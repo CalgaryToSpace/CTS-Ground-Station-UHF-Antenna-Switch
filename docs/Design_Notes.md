@@ -21,10 +21,10 @@
 ## Relay Switching Logic
 
 * 2 relays.
-    * SW1: Picks between RX and TX.
-    * SW2: Adds a dummy loads to the TX line.
+    * K1: Picks between RX and TX.
+    * K2: Adds a dummy loads to the TX line when in RX mode.
 
 * Actions:
-    * Nominally: SW1 is in RX mode, and SW2 is in Dummy mode.
-    * When sense is detected: SW1 switch to TX mode. Delay. SW2 to TX mode.
-    * When sense is done: SW2 to Dummy mode. SW1 to RX mode. Delaying is unimportant.
+    * Nominally: K1 is in RX mode, and K2 is in Dummy mode.
+    * When sense is detected: K1 switch to TX mode. Delay. K2 to TX mode.
+    * When sense is done: K2 to Dummy mode. K1 to RX mode. Delaying is unimportant.
