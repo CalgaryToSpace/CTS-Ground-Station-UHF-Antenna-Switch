@@ -2899,7 +2899,7 @@
 		(at 114.3 57.15)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "ebe868f7-94dc-42ff-9489-e301750aab08")
+		(uuid "def064ab-b470-494c-b25c-5fc64795fa59")
 	)
 	(no_connect
 		(at 34.29 105.41)
@@ -3149,7 +3149,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 39.37) (xy 130.81 39.37)
+			(xy 118.11 39.37) (xy 130.81 39.37)
 		)
 		(stroke
 			(width 0)
@@ -3249,6 +3249,16 @@
 	)
 	(wire
 		(pts
+			(xy 107.95 60.96) (xy 107.95 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6c17110d-a74a-461c-91d7-97f1ca9076b9")
+	)
+	(wire
+		(pts
 			(xy 97.79 66.04) (xy 101.6 66.04)
 		)
 		(stroke
@@ -3319,7 +3329,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 39.37) (xy 119.38 57.15)
+			(xy 118.11 39.37) (xy 118.11 57.15)
 		)
 		(stroke
 			(width 0)
@@ -3579,16 +3589,6 @@
 	)
 	(wire
 		(pts
-			(xy 107.95 60.96) (xy 107.95 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c4dcad82-d32b-4bb8-81cf-7b3ed75e0075")
-	)
-	(wire
-		(pts
 			(xy 107.95 115.57) (xy 114.3 115.57)
 		)
 		(stroke
@@ -3659,7 +3659,7 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 57.15) (xy 119.38 57.15)
+			(xy 114.3 57.15) (xy 118.11 57.15)
 		)
 		(stroke
 			(width 0)
@@ -4014,6 +4014,356 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 212.09 68.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1262c2da-aaeb-4639-addf-219ae38e5eba")
+		(property "Net Class" "50_Ohm_RF"
+			(at 212.09 64.516 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at 285.75 20.32 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify right)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 107.95 102.87 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "15ddee85-d3fa-435f-995a-4e54f4844af8")
+		(property "Net Class" "50_Ohm_RF"
+			(at 112.014 102.87 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at 156.21 176.53 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 135.89 115.57 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "3772a9b4-dfc4-4ebe-9aa8-1f9bb810c4a9")
+		(property "Net Class" "50_Ohm_RF"
+			(at 135.89 119.634 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Component Class" ""
+			(at 62.23 163.83 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 116.84 57.15 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "67f610d1-e6e4-422c-9675-041b193da5f8")
+		(property "Net Class" "50_Ohm_RF"
+			(at 117.602 52.832 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Component Class" ""
+			(at 190.5 8.89 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify right)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 157.48 64.77 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "7feb09a9-7d40-4fda-97d8-11781de0078b")
+		(property "Net Class" "50_Ohm_RF"
+			(at 156.718 69.088 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at 83.82 113.03 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 147.32 115.57 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "83afe08b-0f66-45d3-ac15-7a0550b32974")
+		(property "Net Class" "50_Ohm_RF"
+			(at 147.32 119.634 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Component Class" ""
+			(at 73.66 163.83 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 62.23 57.15 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "95ec4d77-bd04-4568-b054-90c2fa084d9a")
+		(property "Net Class" "50_Ohm_RF"
+			(at 62.992 52.832 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Component Class" ""
+			(at 135.89 8.89 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify right)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 199.39 43.18 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b765067f-8dbb-43a5-9020-5b9ed519a18c")
+		(property "Net Class" "50_Ohm_RF"
+			(at 199.39 39.116 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at 273.05 -5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify right)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 129.54 46.99 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d2d9ce65-c711-448a-a932-13ac86e038be")
+		(property "Net Class" "50_Ohm_RF"
+			(at 130.302 42.672 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Component Class" ""
+			(at 203.2 -1.27 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify right)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 177.8 43.18 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e3a5a981-b5c2-4fe9-8505-bc093ac264f1")
+		(property "Net Class" "50_Ohm_RF"
+			(at 177.8 39.116 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Component Class" ""
+			(at 251.46 -5.08 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify right)
 			)
 		)
 	)
