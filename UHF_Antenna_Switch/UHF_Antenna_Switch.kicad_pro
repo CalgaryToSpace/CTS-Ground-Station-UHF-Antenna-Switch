@@ -648,13 +648,21 @@
         "uuid": "0ffb5503-f768-4a51-945c-501d4ddb5b7c"
       }
     ],
-    "used_designators": "R1,J1-3,#PWR1-8,K1-2",
+    "used_designators": "K3-4,D1-3,C1-4,R2-6,#PWR2,#PWR7,#PWR9,#PWR12-25,Q1-3,U3",
     "variants": []
   },
   "sheets": [
     [
       "0ffb5503-f768-4a51-945c-501d4ddb5b7c",
       "Root"
+    ],
+    [
+      "7c92ed6c-a81f-4de6-ac62-7d4cfa37592e",
+      "Relay_K1"
+    ],
+    [
+      "9d81a56d-3e74-45da-8801-f425c0b0835d",
+      "Relay_K2"
     ]
   ],
   "text_variables": {},

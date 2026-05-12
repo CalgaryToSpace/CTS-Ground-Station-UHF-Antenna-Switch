@@ -17,6 +17,18 @@
 * SWR should be < 1.1:1 at 436 MHz for a good dummy load.
 * Check for resonances. A peak in SWR somewhere means parasitic inductance or capacitance in your layout.
 
+## Detector Chain
+
+Input TX -> RF Directional Coupler -> Attenuator -> RF Detector -> Logic
+
+* Input TX (rate up to 100W = 50 dBm for this assessment)
+* RF Directional Coupler (50 dBm down - 33 dB = 17 dBm)
+    * Part: X4C09F1-30S
+* Attenuator (10 dB)
+    * Part: PAT1220-C-10DB
+* LTC5507 RF Detector
+    * Supports -34 dBm to 14 dBm input.
+
 
 ## Relay Switching Logic
 
@@ -28,3 +40,4 @@
     * Nominally: K1 is in RX mode, and K2 is in Dummy mode.
     * When sense is detected: K1 switch to TX mode. Delay. K2 to TX mode.
     * When sense is done: K2 to Dummy mode. K1 to RX mode. Delaying is unimportant.
+
