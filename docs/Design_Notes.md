@@ -38,6 +38,9 @@ Input TX -> RF Directional Coupler -> Attenuator -> RF Detector -> Logic
     * https://www.digikey.ca/en/products/detail/huber-suhner-inc/92-N-50-0-6-111-NY/16806991
     * https://www.digikey.ca/en/products/detail/amphenol-rf/83-1R/80248
 
+## Footprints
+
+* RP2040-Zero footprint copied from https://github.com/dj505/RP2040-Zero-KiCAD (CERN Open Hardware License v2 - Permissive).
 
 ## Relay Switching Logic
 
