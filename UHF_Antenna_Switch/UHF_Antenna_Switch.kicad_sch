@@ -4325,7 +4325,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Conn_SMA_Female"
+		(property "Value" "Conn_N_Type_Female"
 			(at 220.98 70.1431 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4336,7 +4336,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_Coaxial:SMA_Amphenol_901-143_Horizontal"
+		(property "Footprint" "00-project-footprints:Amphenol N Jack 172234"
 			(at 218.44 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -4379,8 +4379,8 @@
 				)
 			)
 		)
-		(property "Connector Type" "To N-Type Female"
-			(at 230.378 74.168 0)
+		(property "Connector Type" "N-Type Female"
+			(at 228.854 74.168 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7371,7 +7371,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Conn_SMA_Female"
+		(property "Value" "Conn_SO-239"
 			(at 46.99 58.7131 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7382,7 +7382,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_Coaxial:SMA_Amphenol_901-143_Horizontal"
+		(property "Footprint" "00-project-footprints:Amphenol N Jack 172234"
 			(at 49.53 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -7425,7 +7425,7 @@
 				)
 			)
 		)
-		(property "Connector Type" "To SO-239 Female"
+		(property "Connector Type" "SO-239 Female"
 			(at 39.116 62.992 0)
 			(show_name no)
 			(do_not_autoplace no)

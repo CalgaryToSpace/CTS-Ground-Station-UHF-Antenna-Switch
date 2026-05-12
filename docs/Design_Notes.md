@@ -31,7 +31,13 @@ Input TX -> RF Directional Coupler -> Attenuator -> RF Detector -> Logic
 
 ## RF Connectors
 
-* SMA Connectors are [rated to >100W](https://electronics.stackexchange.com/a/74929), so we'll just use those with adapters as necessary.
+* SMA Connectors are [rated to >100W](https://electronics.stackexchange.com/a/74929), under ideal conditions and construction.
+* N-Type connectors are better, where feasible. A [PCB-mount N-Type connector](https://www.mouser.ca/ProductDetail/Amphenol-RF/172234) is a good option.
+
+* Alternatives considered:
+    * https://www.digikey.ca/en/products/detail/huber-suhner-inc/92-N-50-0-6-111-NY/16806991
+    * https://www.digikey.ca/en/products/detail/amphenol-rf/83-1R/80248
+
 
 ## Relay Switching Logic
 
