@@ -5879,7 +5879,7 @@
 				)
 			)
 		)
-		(property "Footprint" "00-project-footprints:X4C09F1 - 30S"
+		(property "Footprint" "00-project-footprints:X4C09F1-30S"
 			(at 80.01 58.42 0)
 			(hide yes)
 			(show_name no)

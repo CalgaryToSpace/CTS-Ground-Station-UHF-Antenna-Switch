@@ -1,13 +1,14 @@
-(footprint "X4C09F1 - 30S"
+(footprint "X4C09F1-30S"
 	(version 20260206)
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
+	(descr "30 dB Directional RF Coupler")
 	(property "Reference" "REF**"
 		(at 0 -0.5 0)
 		(unlocked yes)
 		(layer "F.SilkS")
-		(uuid "0a339120-3ff1-422b-8190-28143b880ebe")
+		(uuid "1cfdb78f-336e-4168-8cde-821607fd7dc1")
 		(effects
 			(font
 				(size 1 1)
@@ -15,11 +16,11 @@
 			)
 		)
 	)
-	(property "Value" "X4C09F1 - 30S"
+	(property "Value" "X4C09F1-30S"
 		(at 0 1 0)
 		(unlocked yes)
 		(layer "F.Fab")
-		(uuid "97d8db77-c0e2-4320-9b7d-cc420ab470a0")
+		(uuid "47d8df7a-cbe3-422e-b687-85aab71da380")
 		(effects
 			(font
 				(size 1 1)
@@ -32,7 +33,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "b1b4a510-3b70-4eac-91dc-f8999f4a65b5")
+		(uuid "274468eb-6ded-4902-a77b-2eff03f7ccaa")
 		(effects
 			(font
 				(size 1 1)
@@ -40,12 +41,12 @@
 			)
 		)
 	)
-	(property "Description" ""
+	(property "Description" "30 dB Directional RF Coupler"
 		(at 0 0 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "cba5a4a2-5227-45e4-bb11-2a62b83e127d")
+		(uuid "e79acbde-79ac-4442-849a-2ed98dbd616b")
 		(effects
 			(font
 				(size 1 1)
@@ -63,7 +64,7 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "6cd962ba-3f9a-494f-a31e-3aa332610658")
+		(uuid "341b878e-6e78-497d-ae36-f96575f0622d")
 	)
 	(fp_line
 		(start -1.710268 4.161285)
@@ -73,13 +74,13 @@
 			(type solid)
 		)
 		(layer "F.SilkS")
-		(uuid "b8bffabb-b7bb-4491-be6b-d15deb6964f2")
+		(uuid "c0bfdfbc-ec52-4b8f-b62f-7751eeafd644")
 	)
 	(fp_text user "*"
 		(at -3.75 2.1 0)
 		(unlocked yes)
 		(layer "F.SilkS")
-		(uuid "af802fdd-196d-4747-ae07-476e647815b0")
+		(uuid "7acc1015-5951-477c-93cb-c164a001eac7")
 		(effects
 			(font
 				(size 1 1)
@@ -93,7 +94,7 @@
 		(at 0 2.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
-		(uuid "c2815039-7237-4b3a-bbeb-d7cb901cca28")
+		(uuid "c3e6f7d4-5f1e-42f8-bf35-87c4efbdbcd5")
 		(effects
 			(font
 				(size 1 1)
@@ -111,7 +112,7 @@
 			(anchor rect)
 		)
 		(primitives)
-		(uuid "ab7ebd6a-c75a-4f55-abb2-6b376acc7ce2")
+		(uuid "28281e01-b450-41ee-b585-2b03340e8559")
 	)
 	(pad "" smd custom
 		(at -0.083516 2.306251)
@@ -123,39 +124,39 @@
 			(anchor rect)
 		)
 		(primitives)
-		(uuid "d0a75ac8-feca-4a46-a337-a583ae55a48e")
+		(uuid "121bd676-df21-4257-af7a-8b2c59826958")
 	)
 	(pad "1" smd rect
 		(at -2.178151 1.158402)
 		(size 0.65 0.65)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(clearance 0.127)
-		(uuid "0d365719-99ab-4840-b503-3e377b51f95d")
+		(uuid "0d23a0fb-a6a0-4001-b0d2-6e554b14b53a")
 	)
 	(pad "2" smd rect
 		(at 2.016412 1.164443)
 		(size 0.65 0.65)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(clearance 0.127)
-		(uuid "bf1aedd8-dde8-480b-ab48-110c8e727d5c")
+		(uuid "f214a8ca-f120-4c0c-8635-cbbe643575d5")
 	)
 	(pad "3" smd rect
 		(at 1.984642 3.451451)
 		(size 0.65 0.65)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(clearance 0.127)
-		(uuid "d3c380d0-ae1f-4188-8506-05798c1d249f")
+		(uuid "97b2656c-05d3-4b4f-a132-f8b38aa50002")
 	)
 	(pad "4" smd rect
 		(at -2.156523 3.455479)
 		(size 0.65 0.65)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(clearance 0.127)
-		(uuid "efe02428-f26e-433a-92bf-3a5bc27efc6e")
+		(uuid "7bc8ee97-1d15-4b8a-b00e-4a6a2dbf3675")
 	)
 	(group ""
-		(uuid "16283c7f-b10d-4a2a-854e-a2914c8ec2d4")
-		(members "ab7ebd6a-c75a-4f55-abb2-6b376acc7ce2" "d0a75ac8-feca-4a46-a337-a583ae55a48e")
+		(uuid "7f59e634-63af-442e-99a3-f8fe540bbe1c")
+		(members "121bd676-df21-4257-af7a-8b2c59826958" "28281e01-b450-41ee-b585-2b03340e8559")
 	)
 	(embedded_fonts no)
 )
