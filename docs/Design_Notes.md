@@ -29,6 +29,9 @@ Input TX -> RF Directional Coupler -> Attenuator -> RF Detector -> Logic
 * LTC5507 RF Detector
     * Supports -34 dBm to 14 dBm input.
 
+## RF Connectors
+
+* SMA Connectors are [rated to >100W](https://electronics.stackexchange.com/a/74929), so we'll just use those with adapters as necessary.
 
 ## Relay Switching Logic
 
