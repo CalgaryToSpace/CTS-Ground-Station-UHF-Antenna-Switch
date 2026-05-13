@@ -3,7 +3,6 @@
 ## Checklist
 
 * Unbroken ground plane under all RF.
-* For FR4 (εr ≈ 4.5) with 1.6mm board: trace width ≈ 2.9mm
 
 ## Dummy Load
 
@@ -53,3 +52,17 @@ Input TX -> RF Directional Coupler -> Attenuator -> RF Detector -> Logic
     * When sense is detected: K1 switch to TX mode. Delay. K2 to TX mode.
     * When sense is done: K2 to Dummy mode. K1 to RX mode. Delaying is unimportant.
 
+## Stackup, RF PCB Impedance
+
+By using JLCPCB's default 1.6mm FR4 2-layer board, we can get a 50 ohm impedance with a large trace width, which is helpful for managing the high current.
+
+For nearly the same price, we could have used a 4-layer board with a smaller trace width, but we intenionally take advantage of the thick trace width to carry more current.
+
+Using [Digikey's PCB Trace Impedance Calculator](https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-pcb-trace-impedance):
+* Input Target Impedance: 50 ohm
+* Input Trace Thickness: 1 oz/ft^2
+* Input Height (dielectric thickness): 1.58 mm
+* Input Dielectric Constant: 4.5 ([Source](https://jlcpcb.com/capabilities/pcb-capabilities))
+* Output Trace Width: 2.88mm
+
+JLCPCB stackup: FR4 TG135 1.6mm 2-layer (default)

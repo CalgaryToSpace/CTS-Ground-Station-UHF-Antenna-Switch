@@ -543,7 +543,7 @@
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 0,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 2.65,
+        "track_width": 2.88,
         "tuning_profile": "50_Ohm_RF",
         "via_diameter": 0.6,
         "via_drill": 0.3
@@ -724,7 +724,7 @@
         "uuid": "0ffb5503-f768-4a51-945c-501d4ddb5b7c"
       }
     ],
-    "used_designators": "",
+    "used_designators": "U3",
     "variants": []
   },
   "sheets": [
