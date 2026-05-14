@@ -7,6 +7,9 @@
  *   - Mode is set by a 1-hot 3-position switch: Auto / Force TX / Force RX.
  *   - In Auto mode, sense TX activity via an ADC-coupled detector.
  *   - Provide USB-CDC serial logging with runtime-selectable verbosity.
+ *
+ * Usage Notes:
+ *   - Press keys 0, 1, 2 to set log level (0 = default and least verbose, 3 = most verbose).
  */
 
 #include <stdio.h>
@@ -18,7 +21,9 @@
 #include "hardware/gpio.h"
 
 // ---------------------------------------------------------------------------
-// Pin map (GPx Pins)
+// Pin map
+//
+// Values are the x in the schematic's GPx pin labels.
 // ---------------------------------------------------------------------------
 #define PIN_STATUS_LED          0
 
@@ -37,23 +42,26 @@
 // ---------------------------------------------------------------------------
 
 // TODO: After testing, reduce this to 10-30 ms.
+// How long to wait before switching the relay after TX detection.
+// Very critical that this is long enough for the relay to by fully switched before moving on.
 // Datasheet: https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=108-98000&DocType=SS&DocLang=EN
-#define RELAY_SWITCH_DELAY_MS   250
+static const uint32_t RELAY_SWITCH_DELAY_MS = 250;
 
 // TX detector threshold. ADC reads ~0 V nominally, ~300 mV when sensing TX.
 // 3.3 V reference, 12-bit ADC -> 1 LSB = 0.806 mV.
 // 150 mV midpoint -> ~186 counts. Use 150 to be safely above noise floor
 // while still catching the 300 mV active level.
-#define TX_DETECT_THRESHOLD_RAW  150
+static const uint32_t TX_DETECT_THRESHOLD_RAW = 150;
 
 // How often Auto-mode samples the detector.
-#define AUTO_POLL_INTERVAL_MS    5
+static const uint32_t AUTO_POLL_INTERVAL_US = 100;
 
-// Status LED heartbeat period (ms) at idle.
-#define HEARTBEAT_PERIOD_MS      1000
+// Status LED heartbeat behaviour at idle (in RX state).
+static const uint32_t HEARTBEAT_PERIOD_MS = 1000;
+static const uint32_t HEARTBEAT_ON_TIME_MS = 100;
 
 // At LOG_TRACE, dump ADC value at this interval (don't flood the link).
-#define ADC_TRACE_INTERVAL_MS    100
+static const uint32_t ADC_TRACE_INTERVAL_MS = 100;
 
 // ---------------------------------------------------------------------------
 // Logging
@@ -70,13 +78,13 @@ static volatile log_level_t g_log_level = LOG_NONE;
 #define LOG(level, fmt, ...) \
     do { \
         if (g_log_level >= (level)) { \
-            printf("[%lu] " fmt "\n", to_ms_since_boot(get_absolute_time()), ##__VA_ARGS__); \
+            printf("[%lu] " fmt "\n", (unsigned long)to_ms_since_boot(get_absolute_time()), ##__VA_ARGS__); \
         } \
     } while (0)
 
 // Always-printed (boot banner, etc.).
 #define LOG_ALWAYS(fmt, ...) \
-    printf("[%lu] " fmt "\n", to_ms_since_boot(get_absolute_time()), ##__VA_ARGS__)
+    printf("[%lu] " fmt "\n", (unsigned long)to_ms_since_boot(get_absolute_time()), ##__VA_ARGS__)
 
 // ---------------------------------------------------------------------------
 // Mode + RF state
@@ -118,13 +126,16 @@ static void relays_set(rf_state_t state) {
         gpio_put(PIN_TX_EN_RELAY_K1, 1);
         sleep_ms(RELAY_SWITCH_DELAY_MS);
         gpio_put(PIN_TX_EN_RELAY_K2, 1);
+        sleep_ms(RELAY_SWITCH_DELAY_MS); // Critical: Wait for the second relay to stabilize too!
     } else {
         gpio_put(PIN_TX_EN_RELAY_K2, 0);
         sleep_ms(RELAY_SWITCH_DELAY_MS);
         gpio_put(PIN_TX_EN_RELAY_K1, 0);
+        sleep_ms(RELAY_SWITCH_DELAY_MS); // Critical: Wait for the second relay to stabilize too!
     }
 }
 
+/// Read the 1-hot SP3T switch and return the corresponding mode.
 static mode_t read_mode_switch(void) {
     // 1-hot, active-high (pull-downs hold unselected pins low).
     bool a = gpio_get(PIN_MODE_AUTO);
@@ -137,23 +148,38 @@ static mode_t read_mode_switch(void) {
     return MODE_INVALID;
 }
 
+/// Read the ADC input for TX detect. Returns the raw ADC value (0-4095).
+///
+/// Averages 8 samples.
 static uint16_t adc_read_tx_detect(void) {
     adc_select_input(ADC_TX_DETECT_CHANNEL);
-    return adc_read();
+
+    uint sum = 0;
+    for (int i = 0; i < 8; i++) {
+        sum += adc_read();
+    }
+    return sum / 8;
 }
 
 // Returns true if TX sensed.
 // Kept as a single function so it can later be swapped for a PTT GPIO read
-// without touching the state machine.
+// without touching the state machine, if desired.
 static bool tx_sensed(void) {
-    return adc_read_tx_detect() >= TX_DETECT_THRESHOLD_RAW;
+    const uint16_t raw = adc_read_tx_detect();
+
+    if (raw >= TX_DETECT_THRESHOLD_RAW) {
+        LOG(LOG_DEBUG, "TX Sensed! tx_sensed: raw=%d", raw);
+        return true;
+    }
+
+    return false;
 }
 
 
 /// Serial input -> log level.
 /// Parses a single digit (0-3) from the serial input and sets that as the log level.
 static void poll_serial_input(void) {
-    int c = getchar_timeout_us(0);
+    const int c = getchar_timeout_us(0);
     if (c == PICO_ERROR_TIMEOUT) return;
 
     if (c >= '0' && c <= '3') {
@@ -195,6 +221,18 @@ static void setup_adc(void) {
     adc_select_input(ADC_TX_DETECT_CHANNEL);
 }
 
+bool status_led_state = false;
+static void set_status_led(bool state) {
+    if (state == status_led_state) {
+        return;
+    }
+
+    LOG(LOG_DEBUG, "set_status_led: %d -> %d", status_led_state, state);
+
+    status_led_state = state;
+    gpio_put(PIN_STATUS_LED, state);
+}
+
 // ---------------------------------------------------------------------------
 // Main loop
 // ---------------------------------------------------------------------------
@@ -214,9 +252,7 @@ int main(void) {
 
     rf_state_t  rf_state    = RF_RX;
     mode_t      last_mode   = MODE_INVALID;
-    uint32_t    last_beat   = 0;
-    uint32_t    last_trace  = 0;
-    bool        led_state   = false;
+    uint32_t    last_adc_value_trace_time  = 0;
 
     // Force initial state on the relays.
     relays_set(RF_RX);
@@ -225,57 +261,63 @@ int main(void) {
         poll_serial_input();
 
         const uint32_t now = to_ms_since_boot(get_absolute_time());
-        const mode_t mode  = read_mode_switch();
+        const mode_t desired_mode = read_mode_switch();
 
-        if (mode != last_mode) {
-            LOG(LOG_INFO, "Mode -> %s", mode_name(mode));
-            last_mode = mode;
+        if (desired_mode != last_mode) {
+            LOG(LOG_INFO, "Mode -> %s", mode_name(desired_mode));
+            last_mode = desired_mode;
         }
 
         // Decide desired RF state from mode.
-        rf_state_t desired = rf_state;
-        switch (mode) {
+        rf_state_t desired_rf_state = rf_state;
+        switch (desired_mode) {
             case MODE_FORCE_TX:
-                desired = RF_TX;
+                desired_rf_state = RF_TX;
                 break;
             case MODE_FORCE_RX:
-                desired = RF_RX;
+                desired_rf_state = RF_RX;
                 break;
             case MODE_AUTO:
-                desired = tx_sensed() ? RF_TX : RF_RX;
+                desired_rf_state = tx_sensed() ? RF_TX : RF_RX;
                 break;
             case MODE_INVALID:
             default:
                 // Safe fallback: drop to RX.
-                desired = RF_RX;
+                {
+                    desired_rf_state = RF_RX;
+                    LOG(LOG_INFO, "Invalid mode (>1-hot) -> %s. Fallback to RX.", mode_name(desired_mode));
+                }
                 break;
         }
 
-        if (desired != rf_state) {
-            LOG(LOG_INFO, "RF %s -> %s", rf_state_name(rf_state), rf_state_name(desired));
-            relays_set(desired);
-            rf_state = desired;
+        if (desired_rf_state != rf_state) {
+            LOG(LOG_DEBUG, "Starting RF %s -> %s", rf_state_name(rf_state), rf_state_name(desired_rf_state));
+            relays_set(desired_rf_state);
+            LOG(LOG_INFO, "Done RF %s -> %s", rf_state_name(rf_state), rf_state_name(desired_rf_state));
+            rf_state = desired_rf_state;
         }
 
         // Trace-level continuous ADC dump (rate-limited so logs stay readable).
-        if (g_log_level >= LOG_TRACE && (now - last_trace) >= ADC_TRACE_INTERVAL_MS) {
+        if (g_log_level >= LOG_TRACE && (now - last_adc_value_trace_time) >= ADC_TRACE_INTERVAL_MS) {
             uint16_t raw = adc_read_tx_detect();
-            uint32_t mv  = (raw * 3300u) / 4095u;
-            LOG_ALWAYS("ADC raw=%u mV=%lu state=%s mode=%s",
-                       raw, (unsigned long)mv, rf_state_name(rf_state), mode_name(mode));
-            last_trace = now;
+            uint32_t mV  = (raw * 3300u) / 4095u;
+            LOG(
+                LOG_TRACE,
+                "ADC: now_ms=%lu raw=%u mV=%lu state=%s mode=%s",
+                (unsigned long)now, raw, (unsigned long)mV,
+                rf_state_name(rf_state), mode_name(desired_mode)
+            );
+            last_adc_value_trace_time = now;
         }
 
-        // Heartbeat LED: solid when TX, blinking when RX.
+        // Heartbeat LED: solid when TX, short-pulse blinking when RX.
         if (rf_state == RF_TX) {
-            gpio_put(PIN_STATUS_LED, 1);
-            led_state = true;
-        } else if ((now - last_beat) >= HEARTBEAT_PERIOD_MS / 2) {
-            led_state = !led_state;
-            gpio_put(PIN_STATUS_LED, led_state);
-            last_beat = now;
+            set_status_led(true);
+        }
+        else {
+            set_status_led((now % HEARTBEAT_PERIOD_MS) < HEARTBEAT_ON_TIME_MS);
         }
 
-        sleep_ms(AUTO_POLL_INTERVAL_MS);
+        sleep_us(AUTO_POLL_INTERVAL_US);
     }
 }
