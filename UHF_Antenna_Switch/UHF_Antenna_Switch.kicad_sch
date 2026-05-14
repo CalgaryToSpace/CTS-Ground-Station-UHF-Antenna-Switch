@@ -3717,6 +3717,18 @@
 		)
 		(uuid "f6667390-f08b-40ea-a472-99f85d017852")
 	)
+	(rectangle
+		(start 181.61 161.29)
+		(end 219.71 171.45)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "f9cdde80-fb63-4d6f-9903-1aacbc187ab5")
+	)
 	(text "Has onboard\n5V-to-3v3 LDO\nRegulator"
 		(exclude_from_sim no)
 		(at 56.134 97.028 0)
@@ -3858,6 +3870,18 @@
 			(justify left)
 		)
 		(uuid "96ba49c3-a08d-4d1f-8c94-7d92ae5a557c")
+	)
+	(text "Bond RF and Digital GND"
+		(exclude_from_sim no)
+		(at 201.168 163.322 0)
+		(effects
+			(font
+				(size 1.905 1.905)
+				(thickness 0.762)
+				(bold yes)
+			)
+		)
+		(uuid "be20706c-4e35-421a-8a31-0c7d78ab951c")
 	)
 	(text "Bypass Caps\nfor LTC5507"
 		(exclude_from_sim no)
@@ -4310,6 +4334,16 @@
 			(type default)
 		)
 		(uuid "5a9e7d92-23a6-4b0b-a532-73cc3e310541")
+	)
+	(wire
+		(pts
+			(xy 196.85 167.64) (xy 194.31 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5e0633ee-3599-4255-ba62-6a3618d9012e")
 	)
 	(wire
 		(pts
@@ -4850,6 +4884,16 @@
 			(type default)
 		)
 		(uuid "d3694610-1f1c-428e-ae89-4d818311af24")
+	)
+	(wire
+		(pts
+			(xy 207.01 167.64) (xy 208.28 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d60eb963-1a31-4a03-b75c-2addb334b2ce")
 	)
 	(wire
 		(pts
@@ -7561,6 +7605,83 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GNDS")
+		(at 194.31 167.64 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "527db0ae-9120-4728-9ae8-0fe91d07f39d")
+		(property "Reference" "#PWR047"
+			(at 187.96 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GNDS"
+			(at 190.246 167.64 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 194.31 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 194.31 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDS\" , signal ground"
+			(at 194.31 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f12fac91-a454-468c-b7ef-ba92087558b8")
+		)
+		(instances
+			(project "UHF_Antenna_Switch"
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c"
+					(reference "#PWR047")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:Conn_Coaxial")
 		(at 149.86 53.34 0)
 		(mirror y)
@@ -8564,7 +8685,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm"
 			(at 177.8 160.02 0)
 			(hide yes)
 			(show_name no)
@@ -9246,6 +9367,88 @@
 			(project "UHF_Antenna_Switch"
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c"
 					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Open")
+		(at 201.93 167.64 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "982ddbd7-bd32-4e2f-a984-6547f095cefa")
+		(property "Reference" "JP2"
+			(at 200.152 170.18 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SolderJumper_2_Open"
+			(at 203.1999 165.1 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm"
+			(at 201.93 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 201.93 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, open"
+			(at 201.93 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "cd4a351b-f618-4260-b798-f6a9e0f111b9")
+		)
+		(pin "2"
+			(uuid "2a6e34e2-61fc-4f0c-bcfe-4ba6d8151836")
+		)
+		(instances
+			(project "UHF_Antenna_Switch"
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c"
+					(reference "JP2")
 					(unit 1)
 				)
 			)
@@ -11130,6 +11333,83 @@
 			(project "UHF_Antenna_Switch"
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c"
 					(reference "#PWR038")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDD")
+		(at 208.28 167.64 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "ef5a7d18-1cd9-44dd-9b60-57be44436bb3")
+		(property "Reference" "#PWR046"
+			(at 214.63 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GNDD"
+			(at 211.836 168.148 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 208.28 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 208.28 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
+			(at 208.28 167.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "23c67c65-9684-4616-b5c7-7ce591111151")
+		)
+		(instances
+			(project "UHF_Antenna_Switch"
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c"
+					(reference "#PWR046")
 					(unit 1)
 				)
 			)
