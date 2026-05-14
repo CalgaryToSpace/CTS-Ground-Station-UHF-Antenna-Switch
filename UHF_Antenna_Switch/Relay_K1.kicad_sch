@@ -2041,7 +2041,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3129e067-5684-41c0-a451-9c5ba9b8b397")
-		(property "Reference" "K3"
+		(property "Reference" "K1"
 			(at 118.11 53.34 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2145,11 +2145,11 @@
 		(instances
 			(project "UHF_Antenna_Switch"
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/7c92ed6c-a81f-4de6-ac62-7d4cfa37592e"
-					(reference "K3")
+					(reference "K1")
 					(unit 1)
 				)
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/9d81a56d-3e74-45da-8801-f425c0b0835d"
-					(reference "K4")
+					(reference "K2")
 					(unit 1)
 				)
 			)
