@@ -4,6 +4,12 @@ PCB and firmware for a ground station UHF antenna switch (between high-power upl
 
 This is a high-power UHF antenna switch PCB (for separate RX/TX paths), controlled with automatic TX sensing.
 
+## Render
+
+![PCB Top Render](./docs/PCB_Render_Top.png)
+
+See the Releases for schematics, gerbers, and BOM.
+
 ## Features
 
 * High Power: Supports TX power of >45 dBm (>30 W)
@@ -16,11 +22,11 @@ This is a high-power UHF antenna switch PCB (for separate RX/TX paths), controll
 
 ## Key Components
 
-* RF Switch
-    * Relay: `1462051-1` (3V control)
-
-* Dummy Load Resistor
-
+* RF Relay: `1462051-1` (HF3-1 with 3V control)
+* Dummy Load Resistor: `I100N50X4B`
+* RF Attenuator (10 dB): `PAT1220-C-10DB-T5`
+* RF Detector: `LTC5507ES6`
+* Microcontroller: RP2040-Zero PCB
 
 ## License
 
