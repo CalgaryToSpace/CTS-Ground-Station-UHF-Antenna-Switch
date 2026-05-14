@@ -8,7 +8,7 @@
 		(at 0 1.5 0)
 		(unlocked yes)
 		(layer "F.SilkS")
-		(uuid "edfd001b-822f-4987-a729-071748c55f6f")
+		(uuid "ccdbf33a-9bba-48f8-a2b7-9237978260a6")
 		(effects
 			(font
 				(size 1 1)
@@ -20,7 +20,7 @@
 		(at 0 -5.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
-		(uuid "36fa6904-fb96-4094-b9b5-4dd375a2fc47")
+		(uuid "7d8eb16b-818f-40a9-be28-e65aebb5a51b")
 		(effects
 			(font
 				(size 1 1)
@@ -33,7 +33,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "7f63c0bc-3e0c-4157-a0fd-04b4b4811222")
+		(uuid "136aaee9-fc94-48de-bd06-601c68652985")
 		(effects
 			(font
 				(size 1 1)
@@ -46,7 +46,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "3f0e93ac-67b9-43fb-bdb0-e9c011a8aa8a")
+		(uuid "35fdaf02-2f49-40cc-aab5-ca76fd82d7d6")
 		(effects
 			(font
 				(size 1 1)
@@ -65,7 +65,7 @@
 		)
 		(fill no)
 		(layer "F.SilkS")
-		(uuid "748fb242-d943-4ccf-affc-6879983933ee")
+		(uuid "fcfea7e4-a353-40f7-bc13-f973798ab4bd")
 	)
 	(fp_rect
 		(start -8 -3.5)
@@ -76,13 +76,13 @@
 		)
 		(fill no)
 		(layer "F.CrtYd")
-		(uuid "04a54336-de09-49a6-a174-c2bdcbbe5e1d")
+		(uuid "5003628d-b44f-4667-9b93-87958e391b92")
 	)
 	(fp_text user "${REFERENCE}"
 		(at 0 -4 0)
 		(unlocked yes)
 		(layer "F.Fab")
-		(uuid "3f5979e0-aabc-4ae4-ad33-00f78ad7d27c")
+		(uuid "6451b846-7d3f-4469-849c-71b5b99ad6ba")
 		(effects
 			(font
 				(size 1 1)
@@ -94,25 +94,56 @@
 		(at -3 -1.439996)
 		(size 6 2.879992)
 		(layers "F.Cu")
-		(uuid "dbcc9875-9501-4820-81fd-e77521700e1b")
+		(uuid "5ce20fdf-eb4b-4ae9-85b6-f17c22b4a3db")
 	)
 	(pad "2" smd rect
 		(at 3 -1.439999)
 		(size 6 2.879998)
 		(layers "F.Cu")
-		(uuid "45a4e549-c341-40b3-8a9b-9632c5b892b9")
+		(uuid "c558ddc8-8226-4700-9ea3-0e724ac3d4ef")
 	)
 	(pad "3" smd rect
 		(at -3 3.94)
 		(size 6 2.88)
 		(layers "F.Cu")
-		(uuid "6f16d56a-9fc5-48d8-b4ae-f391370c2f55")
+		(uuid "81933f4a-94a9-48c6-93c7-e814a3de4125")
 	)
 	(pad "4" smd rect
 		(at 3 3.94)
 		(size 6 2.88)
 		(layers "F.Cu")
-		(uuid "ca1a63ff-9455-41f4-8ac2-24084d5ae73f")
+		(uuid "fbfe6b68-d576-4350-b51d-a7dedaec7fe9")
+	)
+	(zone
+		(layer "F.Cu")
+		(uuid "99122b63-aaea-4542-88d4-90f080832448")
+		(name "Keepout_Between_Traces")
+		(hatch edge 0.5)
+		(connect_pads
+			(clearance 0)
+		)
+		(min_thickness 0.25)
+		(keepout
+			(tracks not_allowed)
+			(vias not_allowed)
+			(pads not_allowed)
+			(copperpour not_allowed)
+			(footprints not_allowed)
+		)
+		(placement
+			(enabled no)
+			(sheetname "")
+		)
+		(fill
+			(thermal_gap 0.5)
+			(thermal_bridge_width 0.5)
+			(island_removal_mode 0)
+		)
+		(polygon
+			(pts
+				(xy -6 0) (xy 6 0) (xy 6 2.5) (xy -6 2.5)
+			)
+		)
 	)
 	(embedded_fonts no)
 )
