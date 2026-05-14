@@ -2687,7 +2687,8 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 80.01 101.6 90)
+		(at 80.01 101.6 270)
+		(mirror x)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -2695,7 +2696,6 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "e82f2177-9916-42b4-9343-c9f0740f2d93")
 		(property "Reference" "R3"
 			(at 80.01 95.25 90)

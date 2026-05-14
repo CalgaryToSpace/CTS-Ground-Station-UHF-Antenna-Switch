@@ -1,0 +1,110 @@
+(footprint "I100N50X4B-On-PCB"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "I100N50X4B Terminator, mounted on PCB ground plane")
+	(property "Reference" "REF**"
+		(at 1.8 4.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "fdbcfeb9-ff6b-4001-a6bf-a18954fc5bf8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "I100N50X4B-On-PCB"
+		(at 3.7 4.6 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "3f8ab410-aae3-461e-8c0d-602cf76bb05b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://cdn.ttm.com/repository/products/wireless-resistive/terminations-flanged/I100N50X4B/I100N50X4B.pdf"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "34928216-2976-46ef-9a0a-8d4f6df83b61")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "87dd8836-e7cb-4db9-b0e2-835acab39be9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -3.5 -3.5)
+		(end 10.5 9.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "d089b982-81a5-45fe-a1f5-cbc863ed258f")
+	)
+	(fp_rect
+		(start -3.5 -3.5)
+		(end 10.5 9.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "22bd9d38-9440-472c-8a10-da430005a265")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 3.7 6.1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "83ebe34d-bd6f-47b5-ad3e-6f667ab70024")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at 0 0)
+		(size 13.5 6.85)
+		(drill 3.2
+			(offset 3.36 0)
+		)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "ff6864f2-c1ea-4b50-9b10-8dca315a55e6")
+	)
+	(pad "2" smd rect
+		(at 6.925 6.5)
+		(size 3 5.405)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "e6ae2c9d-3993-4199-8f51-0fabff085352")
+	)
+	(embedded_fonts no)
+)
