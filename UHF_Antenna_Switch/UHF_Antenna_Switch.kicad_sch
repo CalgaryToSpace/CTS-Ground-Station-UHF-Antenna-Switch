@@ -1933,6 +1933,184 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Jumper:SolderJumper_2_Open"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom no)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "JP"
+				(at 0 2.032 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SolderJumper_2_Open"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 -7.62 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Solder Jumper, 2-pole, open"
+				(at 0 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "solder jumper SPST"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SolderJumper*Open*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "SolderJumper_2_Open_0_1"
+				(polyline
+					(pts
+						(xy -0.254 1.016) (xy -0.254 -1.016)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 1.016) (xy 0.254 -1.016)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SolderJumper_2_Open_1_1"
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 3.81)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Mechanical:MountingHole_Pad"
 			(pin_numbers
 				(hide yes)
@@ -3456,8 +3634,8 @@
 		)
 	)
 	(rectangle
-		(start 149.86 151.13)
-		(end 180.34 171.45)
+		(start 149.86 148.59)
+		(end 180.34 170.18)
 		(stroke
 			(width 0)
 			(type default)
@@ -3481,7 +3659,7 @@
 	)
 	(rectangle
 		(start 149.86 124.46)
-		(end 180.34 149.86)
+		(end 180.34 148.59)
 		(stroke
 			(width 0)
 			(type default)
@@ -3585,7 +3763,7 @@
 	)
 	(text "Mounting Holes"
 		(exclude_from_sim no)
-		(at 165.608 168.91 0)
+		(at 161.798 168.148 0)
 		(effects
 			(font
 				(size 1.905 1.905)
@@ -3955,7 +4133,7 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 161.29) (xy 170.18 158.75)
+			(xy 170.18 160.02) (xy 170.18 157.48)
 		)
 		(stroke
 			(width 0)
@@ -4135,7 +4313,7 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 161.29) (xy 161.29 158.75)
+			(xy 161.29 160.02) (xy 161.29 157.48)
 		)
 		(stroke
 			(width 0)
@@ -4755,7 +4933,7 @@
 	)
 	(wire
 		(pts
-			(xy 153.67 161.29) (xy 153.67 158.75)
+			(xy 153.67 160.02) (xy 153.67 157.48)
 		)
 		(stroke
 			(width 0)
@@ -5801,7 +5979,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDS")
-		(at 153.67 161.29 0)
+		(at 153.67 160.02 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5811,7 +5989,7 @@
 		(dnp no)
 		(uuid "159584c3-3eff-4110-9aba-b3551293004f")
 		(property "Reference" "#PWR042"
-			(at 153.67 167.64 0)
+			(at 153.67 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5822,7 +6000,7 @@
 			)
 		)
 		(property "Value" "GNDS"
-			(at 153.67 165.354 0)
+			(at 153.67 164.084 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5832,7 +6010,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 153.67 161.29 0)
+			(at 153.67 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5843,7 +6021,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 153.67 161.29 0)
+			(at 153.67 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5854,7 +6032,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDS\" , signal ground"
-			(at 153.67 161.29 0)
+			(at 153.67 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6619,7 +6797,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDS")
-		(at 170.18 161.29 0)
+		(at 170.18 160.02 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6629,7 +6807,7 @@
 		(dnp no)
 		(uuid "40e193dd-6330-4007-b5b8-3b38523e71e1")
 		(property "Reference" "#PWR044"
-			(at 170.18 167.64 0)
+			(at 170.18 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6640,7 +6818,7 @@
 			)
 		)
 		(property "Value" "GNDS"
-			(at 170.18 165.354 0)
+			(at 170.18 164.084 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6650,7 +6828,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 170.18 161.29 0)
+			(at 170.18 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6661,7 +6839,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 170.18 161.29 0)
+			(at 170.18 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6672,7 +6850,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDS\" , signal ground"
-			(at 170.18 161.29 0)
+			(at 170.18 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7136,7 +7314,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole_Pad")
-		(at 153.67 156.21 0)
+		(at 153.67 154.94 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7147,7 +7325,7 @@
 		(fields_autoplaced yes)
 		(uuid "4e88a407-38d3-4bb2-b623-c74d24adcd78")
 		(property "Reference" "H1"
-			(at 156.21 153.6699 0)
+			(at 156.21 152.3999 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7158,7 +7336,7 @@
 			)
 		)
 		(property "Value" "MountingHole_Pad"
-			(at 156.21 156.2099 0)
+			(at 156.21 154.9399 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7170,7 +7348,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad"
-			(at 153.67 156.21 0)
+			(at 153.67 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7181,7 +7359,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 153.67 156.21 0)
+			(at 153.67 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7192,7 +7370,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole with connection"
-			(at 153.67 156.21 0)
+			(at 153.67 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8117,6 +8295,83 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GNDD")
+		(at 177.8 165.1 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7340484c-46cd-481b-bc85-a8bcdd8bcd02")
+		(property "Reference" "#PWR045"
+			(at 177.8 171.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GNDD"
+			(at 177.292 168.656 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
+			(at 177.8 165.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "038c6df2-6096-44e8-9983-382efe0d4561")
+		)
+		(instances
+			(project "UHF_Antenna_Switch"
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c"
+					(reference "#PWR045")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 205.74 146.05 0)
 		(unit 1)
@@ -8270,6 +8525,88 @@
 			(project "UHF_Antenna_Switch"
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c"
 					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Open")
+		(at 177.8 160.02 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7833d3bb-a4c5-4886-b58f-d0215e3a294f")
+		(property "Reference" "JP1"
+			(at 173.228 159.004 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SolderJumper_2_Open"
+			(at 180.34 161.2899 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 177.8 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 185.42 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, open"
+			(at 182.88 160.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "857c5985-0e1e-4276-af34-43e26feb9cf2")
+		)
+		(pin "2"
+			(uuid "61cb9023-0c11-4114-b103-065fa3e90e66")
+		)
+		(instances
+			(project "UHF_Antenna_Switch"
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c"
+					(reference "JP1")
 					(unit 1)
 				)
 			)
@@ -9960,6 +10297,85 @@
 		)
 	)
 	(symbol
+		(lib_id "Mechanical:MountingHole_Pad")
+		(at 177.8 152.4 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c5ee9a70-0f85-46b0-a8af-80ac5faf48c2")
+		(property "Reference" "H4"
+			(at 174.498 154.432 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole_Pad"
+			(at 180.34 152.3999 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad"
+			(at 177.8 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Mounting Hole with connection"
+			(at 177.8 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "cd38d70e-ecc3-4f12-adf4-f2c9b3b998ad")
+		)
+		(instances
+			(project "UHF_Antenna_Switch"
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c"
+					(reference "H4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:LED")
 		(at 36.83 163.83 90)
 		(unit 1)
@@ -10563,7 +10979,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole_Pad")
-		(at 161.29 156.21 0)
+		(at 161.29 154.94 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10574,7 +10990,7 @@
 		(fields_autoplaced yes)
 		(uuid "e4e539e8-baca-401e-beb1-e4fe1bc5da64")
 		(property "Reference" "H2"
-			(at 163.83 153.6699 0)
+			(at 163.83 152.3999 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10585,7 +11001,7 @@
 			)
 		)
 		(property "Value" "MountingHole_Pad"
-			(at 163.83 156.2099 0)
+			(at 163.83 154.9399 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10597,7 +11013,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad"
-			(at 161.29 156.21 0)
+			(at 161.29 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10608,7 +11024,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 161.29 156.21 0)
+			(at 161.29 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10619,7 +11035,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole with connection"
-			(at 161.29 156.21 0)
+			(at 161.29 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10823,7 +11239,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDS")
-		(at 161.29 161.29 0)
+		(at 161.29 160.02 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10833,7 +11249,7 @@
 		(dnp no)
 		(uuid "f2cae011-c496-4d08-b411-8fa6fe2f011a")
 		(property "Reference" "#PWR043"
-			(at 161.29 167.64 0)
+			(at 161.29 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10844,7 +11260,7 @@
 			)
 		)
 		(property "Value" "GNDS"
-			(at 161.29 165.354 0)
+			(at 161.29 164.084 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10854,7 +11270,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 161.29 161.29 0)
+			(at 161.29 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10865,7 +11281,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 161.29 161.29 0)
+			(at 161.29 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10876,7 +11292,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDS\" , signal ground"
-			(at 161.29 161.29 0)
+			(at 161.29 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11079,7 +11495,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole_Pad")
-		(at 170.18 156.21 0)
+		(at 170.18 154.94 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11087,10 +11503,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "fca01422-7d05-4e03-a792-c87880596950")
 		(property "Reference" "H3"
-			(at 172.72 153.6699 0)
+			(at 166.624 156.972 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11101,7 +11516,7 @@
 			)
 		)
 		(property "Value" "MountingHole_Pad"
-			(at 172.72 156.2099 0)
+			(at 172.72 154.9399 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11113,7 +11528,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad"
-			(at 170.18 156.21 0)
+			(at 170.18 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11124,7 +11539,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 170.18 156.21 0)
+			(at 170.18 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11135,7 +11550,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole with connection"
-			(at 170.18 156.21 0)
+			(at 170.18 154.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
