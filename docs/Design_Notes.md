@@ -6,7 +6,6 @@
 
 ## Dummy Load
 
-* Fan out microstrip to resistors.
 * Use thin-film chip resistors. Standard thick-film resistors have too much parasitic inductance at UHF.
 * Add a heatsink to the bottom of the board, potentially.
 * Intended to operate only in small bursts, so thermal dissipation isn't as big of a deal.
@@ -14,9 +13,27 @@
 ### Test Notes
 
 * SWR should be < 1.1:1 at 436 MHz for a good dummy load.
-* Check for resonances. A peak in SWR somewhere means parasitic inductance or capacitance in your layout.
+* Check for resonances. A peak in SWR somewhere means parasitic inductance or capacitance in the layout.
 
 ## Detector Chain
+
+Input TX -> RF Coupler with PCB Traces -> Attenuator -> RF Detector -> Logic
+
+* Input TX (rate up to 100W = 50 dBm for this assessment)
+* RF Coupler with PCB Traces (50 dBm - 40 dB = 10 dBm)
+    * Raw PCB traces running parallel to each other on the PCB act as an RF coupler.
+    * Target -40 dB power transfer in coupler.
+    * See the design doc for this coupler section specifically for more details.
+* Attenuator (10 dB)
+    * Part: PAT1220-C-10DB
+* LTC5507 RF Detector
+    * Supports -34 dBm to 14 dBm input.
+    * At 50 dBm input, output power is approximately 10 dBm.
+    * At 100 mW (20 dBm), output power is approximately -30 dBm. Should be possible to test with even just an SDR directly.
+
+### Alternative Plan
+
+<details summary="Click to expand">
 
 Input TX -> RF Directional Coupler -> Attenuator -> RF Detector -> Logic
 
@@ -27,6 +44,8 @@ Input TX -> RF Directional Coupler -> Attenuator -> RF Detector -> Logic
     * Part: PAT1220-C-10DB
 * LTC5507 RF Detector
     * Supports -34 dBm to 14 dBm input.
+
+</details>
 
 ## RF Connectors
 

@@ -3573,7 +3573,7 @@
 		)
 		(uuid "2dc7a323-e93d-4f6e-9ea8-7b92ea5eeb45")
 	)
-	(text "Split out 30 dB of RF power\nfor TX detection."
+	(text "Split out 40 dB of RF power\nfor TX detection."
 		(exclude_from_sim no)
 		(at 80.264 58.674 0)
 		(effects
