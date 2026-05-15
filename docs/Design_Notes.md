@@ -69,7 +69,7 @@ Input TX -> RF Directional Coupler -> Attenuator -> RF Detector -> Logic
 * Actions:
     * Nominally: K1 is in RX mode, and K2 is in Dummy mode.
     * When sense is detected: K1 switch to TX mode. Delay. K2 to TX mode.
-    * When sense is done: K2 to Dummy mode. K1 to RX mode. Delaying is unimportant.
+    * When sense is done: K2 to Dummy mode. Delay. K1 to RX mode.
 
 ## Stackup, RF PCB Impedance
 
