@@ -44,14 +44,14 @@
 // TODO: After testing, reduce this to 10-30 ms.
 // How long to wait before switching the relay after TX detection.
 // Very critical that this is long enough for the relay to by fully switched before moving on.
-// Datasheet: https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=108-98000&DocType=SS&DocLang=EN
+// Datasheet (HF3-1): https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=108-98000&DocType=SS&DocLang=EN
 static const uint32_t RELAY_SWITCH_DELAY_MS = 250;
 
-// TX detector threshold. ADC reads ~0 V nominally, ~300 mV when sensing TX.
+// TX detector threshold. ADC reads 250-300mV nominally, >=400 mV when sensing TX (at >=-l6 dBm).
 // 3.3 V reference, 12-bit ADC -> 1 LSB = 0.806 mV.
-// 150 mV midpoint -> ~186 counts. Use 150 to be safely above noise floor
-// while still catching the 300 mV active level.
-static const uint32_t TX_DETECT_THRESHOLD_RAW = 150;
+// Threshold: 400 mV -> 496 raw counts.
+// Datasheet (LTC5507ES6): https://www.analog.com/media/en/technical-documentation/data-sheets/5507f.pdf
+static const uint32_t TX_DETECT_THRESHOLD_RAW = 496; // TODO: Review trace log messages to adjust this value as observed.
 
 // How often Auto-mode samples the detector.
 static const uint32_t AUTO_POLL_INTERVAL_US = 100;
