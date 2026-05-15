@@ -17,6 +17,9 @@ add_executable(cts_uhf_rxtx_switch
     main.c
 )
 
+# Always force -O3 optimization level.
+target_compile_options(cts_uhf_rxtx_switch PRIVATE -O3)
+
 target_link_libraries(cts_uhf_rxtx_switch
     pico_stdlib
     hardware_adc

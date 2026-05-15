@@ -138,9 +138,9 @@ static void relays_set(rf_state_t state) {
 /// Read the 1-hot SP3T switch and return the corresponding mode.
 static mode_t read_mode_switch(void) {
     // 1-hot, active-high (pull-downs hold unselected pins low).
-    bool a = gpio_get(PIN_MODE_AUTO);
-    bool t = gpio_get(PIN_MODE_FORCE_TX);
-    bool r = gpio_get(PIN_MODE_FORCE_RX);
+    const bool a = gpio_get(PIN_MODE_AUTO);
+    const bool t = gpio_get(PIN_MODE_FORCE_TX);
+    const bool r = gpio_get(PIN_MODE_FORCE_RX);
 
     if (a && !t && !r) return MODE_AUTO;
     if (!a && t && !r) return MODE_FORCE_TX;
