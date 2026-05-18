@@ -39,6 +39,8 @@ screen /dev/tty.usbmodem* 115200
 
 Press keys 0, 1, 2, 3 to set log level (0 = default and least verbose, 3 = most verbose).
 
+To kill `screen`, press `Ctrl+A`, then nothing will appear to happen, then `k`, then `y` when prompted.
+
 ## IDE Support
 
 After building, enable IDE support by creating a symbolic link to `compile_commands.json` in the build directory:

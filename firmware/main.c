@@ -19,6 +19,7 @@
 #include "pico/stdlib.h"
 #include "hardware/adc.h"
 #include "hardware/gpio.h"
+#include "hardware/watchdog.h"
 
 // ---------------------------------------------------------------------------
 // Pin map
@@ -257,8 +258,20 @@ int main(void) {
     // Force initial state on the relays.
     relays_set(RF_RX);
 
+    // [WATCHDOG] Detect if we woke from a watchdog reset and log it.
+    if (watchdog_caused_reboot()) {
+        LOG_ALWAYS("*** WATCHDOG RESET DETECTED ***");
+    }
+
+    // [WATCHDOG] Enable. Timeout is 5000 ms.
+    // pause_on_debug=true freezes the counter while a debugger is halted.
+    watchdog_enable(5000, true);
+    LOG_ALWAYS("Watchdog enabled (5000 ms timeout)");
+
     while (true) {
         poll_serial_input();
+
+        watchdog_update();  // [WATCHDOG] Feed dog. Must run < every 5000 ms.
 
         const uint32_t now = to_ms_since_boot(get_absolute_time());
         const mode_t desired_mode = read_mode_switch();

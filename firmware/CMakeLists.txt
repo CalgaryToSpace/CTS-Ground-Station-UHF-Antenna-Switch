@@ -24,6 +24,7 @@ target_link_libraries(cts_uhf_rxtx_switch
     pico_stdlib
     hardware_adc
     hardware_gpio
+    hardware_watchdog
 )
 
 # USB-CDC for serial; disable UART stdio, apparently so we don't burn pins.
