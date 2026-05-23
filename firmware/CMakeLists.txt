@@ -31,5 +31,6 @@ target_link_libraries(cts_uhf_rxtx_switch
 pico_enable_stdio_usb(cts_uhf_rxtx_switch  1)
 pico_enable_stdio_uart(cts_uhf_rxtx_switch 0)
 
-# Produce .uf2 etc.
-pico_add_extra_outputs(cts_uhf_rxtx_switch)
+# Produce .uf2 output to flash.
+pico_add_bin_output(cts_uhf_rxtx_switch)
+pico_add_uf2_output(cts_uhf_rxtx_switch)
