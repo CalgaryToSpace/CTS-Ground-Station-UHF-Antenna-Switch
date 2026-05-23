@@ -64,28 +64,37 @@ static const uint32_t HEARTBEAT_ON_TIME_MS = 100;
 // At LOG_TRACE, dump ADC value at this interval (don't flood the link).
 static const uint32_t ADC_TRACE_INTERVAL_MS = 100;
 
+// At LOG_INFO or higher, print a heartbeat message.
+static const uint32_t INFO_HEARTBEAT_MESSAGE_INTERVAL_MS = 2500;
+
 // ---------------------------------------------------------------------------
 // Logging
 // ---------------------------------------------------------------------------
 typedef enum {
-    LOG_NONE  = 0,   // Boot banner + critical only
-    LOG_INFO  = 1,   // Mode/state transitions
-    LOG_DEBUG = 2,   // + periodic state
-    LOG_TRACE = 3,   // + continuous ADC stream
+    LOG_ALWAYS = 0,   // Boot banner + critical only
+    LOG_INFO   = 1,   // Mode/state transitions
+    LOG_DEBUG  = 2,   // + periodic state
+    LOG_TRACE  = 3,   // + continuous ADC stream
 } log_level_t;
 
-static volatile log_level_t g_log_level = LOG_NONE;
+static volatile log_level_t g_log_level = LOG_ALWAYS;
+
+static const char *log_level_name(log_level_t level) {
+    switch (level) {
+        case LOG_ALWAYS:  return "ALWAYS";
+        case LOG_INFO:  return " INFO ";
+        case LOG_DEBUG: return "DEBUG ";
+        case LOG_TRACE: return "TRACE ";
+    }
+    return "UNKOWN";
+}
 
 #define LOG(level, fmt, ...) \
     do { \
         if (g_log_level >= (level)) { \
-            printf("[%lu] " fmt "\n", (unsigned long)to_ms_since_boot(get_absolute_time()), ##__VA_ARGS__); \
+            printf("[%lu] [%s] " fmt "\n", (unsigned long)to_ms_since_boot(get_absolute_time()), log_level_name(level), ##__VA_ARGS__); \
         } \
     } while (0)
-
-// Always-printed (boot banner, etc.).
-#define LOG_ALWAYS(fmt, ...) \
-    printf("[%lu] " fmt "\n", (unsigned long)to_ms_since_boot(get_absolute_time()), ##__VA_ARGS__)
 
 // ---------------------------------------------------------------------------
 // Mode + RF state
@@ -186,7 +195,7 @@ static void poll_serial_input(void) {
     if (c >= '0' && c <= '3') {
         log_level_t new_level = (log_level_t)(c - '0');
         g_log_level = new_level;
-        LOG_ALWAYS("Log level set to %d", new_level);
+        LOG(LOG_ALWAYS, "Log level set to %d", new_level);
     }
 }
 
@@ -245,28 +254,29 @@ int main(void) {
     // Give USB-CDC a moment to enumerate so the user sees the banner.
     sleep_ms(1500);
 
-    LOG_ALWAYS("===============================================");
-    LOG_ALWAYS("CTS UHF RX/TX Switch booting...");
-    LOG_ALWAYS("Send '0'..'3' to set log level (default = 0)");
-    LOG_ALWAYS("  0 = none, 1 = info, 2 = debug, 3 = trace");
-    LOG_ALWAYS("===============================================");
+    LOG(LOG_ALWAYS, "===============================================");
+    LOG(LOG_ALWAYS, "CTS UHF RX/TX Switch booting...");
+    LOG(LOG_ALWAYS, "Send '0'..'3' to set log level (default = 0)");
+    LOG(LOG_ALWAYS, "  0 = none, 1 = info, 2 = debug, 3 = trace");
+    LOG(LOG_ALWAYS, "===============================================");
 
     rf_state_t  rf_state    = RF_RX;
     mode_t      last_mode   = MODE_INVALID;
     uint32_t    last_adc_value_trace_time  = 0;
+    uint32_t    last_info_heartbeat_time = 0;
 
     // Force initial state on the relays.
     relays_set(RF_RX);
 
     // [WATCHDOG] Detect if we woke from a watchdog reset and log it.
     if (watchdog_caused_reboot()) {
-        LOG_ALWAYS("*** WATCHDOG RESET DETECTED ***");
+        LOG(LOG_ALWAYS, "*** WATCHDOG RESET DETECTED ***");
     }
 
     // [WATCHDOG] Enable. Timeout is 5000 ms.
     // pause_on_debug=true freezes the counter while a debugger is halted.
     watchdog_enable(5000, true);
-    LOG_ALWAYS("Watchdog enabled (5000 ms timeout)");
+    LOG(LOG_ALWAYS, "Watchdog enabled (5000 ms timeout)");
 
     while (true) {
         poll_serial_input();
@@ -321,6 +331,17 @@ int main(void) {
                 rf_state_name(rf_state), mode_name(desired_mode)
             );
             last_adc_value_trace_time = now;
+        }
+
+        // Info-level heartbeat.
+        if (g_log_level >= LOG_INFO && (now - last_info_heartbeat_time >= INFO_HEARTBEAT_MESSAGE_INTERVAL_MS)) {
+            LOG(
+                LOG_INFO,
+                "Heartbeat: state=%s mode=%s",
+                rf_state_name(rf_state), mode_name(desired_mode)
+            );
+
+            last_info_heartbeat_time = now;
         }
 
         // Heartbeat LED: solid when TX, short-pulse blinking when RX.
