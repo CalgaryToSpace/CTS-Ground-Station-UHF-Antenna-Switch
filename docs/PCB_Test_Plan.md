@@ -3,7 +3,9 @@
 ## Basic Bring-Up
 
 1. Check GND-to-3V3 and GND-to-5V rail resistance. Should be >30k.
-2. Check for RF shorts to GND, especially at the high-power nodes through the relays.
+2. Check for RF shorts to GND, especially at the high-power nodes through the relays. Probe each RF connector's center pin to its ground pins, and ensure open (Antenna and RX ports) or 50 ohms (TX/Uplink Input port).
+3. Probe across R2 (50 ohm resistor). Should measure 25 ohms.
+4. Check the unpowered default relay states. Antenna port to RX port should be NC. TX port to GND should be 50 ohms (already checked). TX port to R1 attenuator's top-side lead should be NC.
 
 ## Initial Flash and Naive Functionality Checks
 
