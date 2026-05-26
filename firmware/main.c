@@ -48,11 +48,10 @@
 // Tunables
 // ---------------------------------------------------------------------------
 
-// TODO: After testing, reduce this to 10-30 ms.
 // How long to wait before switching the relay after TX detection.
 // Very critical that this is long enough for the relay to by fully switched before moving on.
 // Datasheet (HF3-1): https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=108-98000&DocType=SS&DocLang=EN
-static const uint32_t RELAY_SWITCH_DELAY_MS = 250;
+static const uint32_t RELAY_SWITCH_DELAY_MS = 12;
 
 // TX detector threshold. ADC reads 250-300mV nominally, >=400 mV when sensing TX (at >=-l6 dBm).
 // 3.3 V reference, 12-bit ADC -> 1 LSB = 0.806 mV.
