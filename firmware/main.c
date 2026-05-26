@@ -9,7 +9,8 @@
  *   - Provide USB-CDC serial logging with runtime-selectable verbosity.
  *
  * Usage Notes:
- *   - Press keys 0, 1, 2 to set log level (0 = default and least verbose, 3 = most verbose).
+ *   - Press keys 0/1/2/3 to set log level (0 = default and least verbose, 3 = most verbose).
+ *   - Press 't'/'r'/'a' to force TX/RX/Auto, 's' to revert to the physical slide switch.
  */
 
 #include <stdio.h>
@@ -106,6 +107,9 @@ typedef enum {
     MODE_INVALID,    // No switch position asserted (shouldn't happen with 1-hot).
 } mode_t;
 
+// MODE_INVALID means "no serial override; use the physical switch".
+static volatile mode_t g_serial_mode_override = MODE_INVALID;
+
 typedef enum {
     RF_RX,           // K1 = RX path,  K2 = dummy load on TX line.
     RF_TX,           // K1 = TX path,  K2 = TX line passthrough.
@@ -186,8 +190,7 @@ static bool tx_sensed(void) {
 }
 
 
-/// Serial input -> log level.
-/// Parses a single digit (0-3) from the serial input and sets that as the log level.
+/// Parse single-character serial input commands and execute/handle them.
 static void poll_serial_input(void) {
     const int c = getchar_timeout_us(0);
     if (c == PICO_ERROR_TIMEOUT) return;
@@ -196,6 +199,18 @@ static void poll_serial_input(void) {
         log_level_t new_level = (log_level_t)(c - '0');
         g_log_level = new_level;
         LOG(LOG_ALWAYS, "Log level set to %d", new_level);
+    } else if (c == 't') {
+        g_serial_mode_override = MODE_FORCE_TX;
+        LOG(LOG_ALWAYS, "Serial override -> FORCE_TX");
+    } else if (c == 'r') {
+        g_serial_mode_override = MODE_FORCE_RX;
+        LOG(LOG_ALWAYS, "Serial override -> FORCE_RX");
+    } else if (c == 'a') {
+        g_serial_mode_override = MODE_AUTO;
+        LOG(LOG_ALWAYS, "Serial override -> AUTO");
+    } else if (c == 's') {
+        g_serial_mode_override = MODE_INVALID;
+        LOG(LOG_ALWAYS, "Serial override cleared, using slide switch");
     }
 }
 
@@ -256,8 +271,9 @@ int main(void) {
 
     LOG(LOG_ALWAYS, "===============================================");
     LOG(LOG_ALWAYS, "CTS UHF RX/TX Switch booting...");
-    LOG(LOG_ALWAYS, "Send '0'..'3' to set log level (default = 0)");
+    LOG(LOG_ALWAYS, "Send '0'/'1'/'2'/'3' to set log level (default = 0)");
     LOG(LOG_ALWAYS, "  0 = none, 1 = info, 2 = debug, 3 = trace");
+    LOG(LOG_ALWAYS, "Send 't'/'r'/'a' to force TX/RX/Auto, 's' to use slide switch");
     LOG(LOG_ALWAYS, "===============================================");
 
     rf_state_t  rf_state    = RF_RX;
@@ -284,7 +300,9 @@ int main(void) {
         watchdog_update();  // [WATCHDOG] Feed dog. Must run < every 5000 ms.
 
         const uint32_t now = to_ms_since_boot(get_absolute_time());
-        const mode_t desired_mode = read_mode_switch();
+        const mode_t desired_mode = (g_serial_mode_override != MODE_INVALID)
+                                        ? g_serial_mode_override
+                                        : read_mode_switch();
 
         if (desired_mode != last_mode) {
             LOG(LOG_INFO, "Mode -> %s", mode_name(desired_mode));
