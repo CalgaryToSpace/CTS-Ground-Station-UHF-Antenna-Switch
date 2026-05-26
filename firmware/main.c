@@ -11,6 +11,11 @@
  * Usage Notes:
  *   - Press keys 0/1/2/3 to set log level (0 = default and least verbose, 3 = most verbose).
  *   - Press 't'/'r'/'a' to force TX/RX/Auto, 's' to revert to the physical slide switch.
+ *
+ * Heartbeat (LOG_INFO, ~2.5 s):
+ *   Heartbeat: state=<RX|TX> mode=<AUTO|FORCE_TX|FORCE_RX|INVALID> last_tx_ago_s=<sec.ms|never>
+ *   last_tx_ago_s is the time since Auto mode last sensed TX, or "never"
+ *   until the first detection.
  */
 
 #include <stdio.h>
@@ -280,6 +285,10 @@ int main(void) {
     mode_t      last_mode   = MODE_INVALID;
     uint32_t    last_adc_value_trace_time  = 0;
     uint32_t    last_info_heartbeat_time = 0;
+    // Uptime (ms) when Auto mode last sensed TX. 0 = never sensed.
+    // Reported by the heartbeat as seconds-since so a ground-station
+    // host can confirm the switch actually saw its uplink burst.
+    uint32_t    last_tx_detect_ms = 0;
 
     // Force initial state on the relays.
     relays_set(RF_RX);
@@ -318,9 +327,18 @@ int main(void) {
             case MODE_FORCE_RX:
                 desired_rf_state = RF_RX;
                 break;
-            case MODE_AUTO:
-                desired_rf_state = tx_sensed() ? RF_TX : RF_RX;
+            case MODE_AUTO: {
+                const bool sensed = tx_sensed();
+                desired_rf_state = sensed ? RF_TX : RF_RX;
+                // Stamp every poll that crosses the threshold so the
+                // heartbeat's "seconds ago" tracks the most recent
+                // detection. Only Auto mode counts as an auto-detect;
+                // Force TX deliberately doesn't update this.
+                if (sensed) {
+                    last_tx_detect_ms = now;
+                }
                 break;
+            }
             case MODE_INVALID:
             default:
                 // Safe fallback: drop to RX.
@@ -353,11 +371,22 @@ int main(void) {
 
         // Info-level heartbeat.
         if (g_log_level >= LOG_INFO && (now - last_info_heartbeat_time >= INFO_HEARTBEAT_MESSAGE_INTERVAL_MS)) {
-            LOG(
-                LOG_INFO,
-                "Heartbeat: state=%s mode=%s",
-                rf_state_name(rf_state), mode_name(desired_mode)
-            );
+            if (last_tx_detect_ms == 0) {
+                LOG(
+                    LOG_INFO,
+                    "Heartbeat: state=%s mode=%s last_tx_ago_s=never",
+                    rf_state_name(rf_state), mode_name(desired_mode)
+                );
+            } else {
+                const uint32_t age_ms = now - last_tx_detect_ms;
+                LOG(
+                    LOG_INFO,
+                    "Heartbeat: state=%s mode=%s last_tx_ago_s=%lu.%03lu",
+                    rf_state_name(rf_state), mode_name(desired_mode),
+                    (unsigned long)(age_ms / 1000u),
+                    (unsigned long)(age_ms % 1000u)
+                );
+            }
 
             last_info_heartbeat_time = now;
         }
