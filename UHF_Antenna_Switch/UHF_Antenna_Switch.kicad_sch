@@ -5617,6 +5617,41 @@
 	(netclass_flag ""
 		(length 2.54)
 		(shape round)
+		(at 101.6 55.88 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "38ee7eec-58a0-479b-afe3-e176e2d3ddac")
+		(property "Net Class" "50_Ohm_RF"
+			(at 97.282 55.118 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Component Class" ""
+			(at 53.34 -17.78 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify right)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
 		(at 116.84 45.72 0)
 		(effects
 			(font
