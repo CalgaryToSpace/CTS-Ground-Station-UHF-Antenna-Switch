@@ -33,7 +33,7 @@ jobs:
         run: cd firmware/build && make
 
       - name: Upload firmware artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: firmware-${{ github.sha }}
           # Glob captures .uf2, .elf, .bin, and .hex produced by the build
