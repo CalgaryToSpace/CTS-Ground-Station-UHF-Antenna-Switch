@@ -128,6 +128,24 @@ static const char *mode_name(mode_t m) {
     }
 }
 
+static const char *mode_name_sourced(mode_t m, bool from_serial) {
+    if (from_serial) {
+        switch (m) {
+            case MODE_AUTO:     return "AUTO_BY_SERIAL";
+            case MODE_FORCE_TX: return "FORCE_TX_BY_SERIAL";
+            case MODE_FORCE_RX: return "FORCE_RX_BY_SERIAL";
+            default:            return "INVALID";
+        }
+    } else {
+        switch (m) {
+            case MODE_AUTO:     return "AUTO_BY_SWITCH";
+            case MODE_FORCE_TX: return "FORCE_TX_BY_SWITCH";
+            case MODE_FORCE_RX: return "FORCE_RX_BY_SWITCH";
+            default:            return "INVALID";
+        }
+    }
+}
+
 static const char *rf_state_name(rf_state_t s) {
     return (s == RF_TX) ? "TX" : "RX";
 }
@@ -280,8 +298,9 @@ int main(void) {
     LOG(LOG_ALWAYS, "Send 't'/'r'/'a' to force TX/RX/Auto, 's' to use slide switch");
     LOG(LOG_ALWAYS, "===============================================");
 
-    rf_state_t  rf_state    = RF_RX;
-    mode_t      last_mode   = MODE_INVALID;
+    rf_state_t  rf_state              = RF_RX;
+    mode_t      last_mode             = MODE_INVALID;
+    bool        last_mode_from_serial = false;
     uint32_t    last_adc_value_trace_time  = 0;
     uint32_t    last_info_heartbeat_time = 0;
     // Uptime (ms) when Auto mode last sensed TX. 0 = never sensed.
@@ -308,13 +327,15 @@ int main(void) {
         watchdog_update();  // [WATCHDOG] Feed dog. Must run < every 5000 ms.
 
         const uint32_t now = to_ms_since_boot(get_absolute_time());
-        const mode_t desired_mode = (g_serial_mode_override != MODE_INVALID)
+        const bool   mode_from_serial = (g_serial_mode_override != MODE_INVALID);
+        const mode_t desired_mode     = mode_from_serial
                                         ? g_serial_mode_override
                                         : read_mode_switch();
 
-        if (desired_mode != last_mode) {
-            LOG(LOG_INFO, "Mode -> %s", mode_name(desired_mode));
-            last_mode = desired_mode;
+        if (desired_mode != last_mode || mode_from_serial != last_mode_from_serial) {
+            LOG(LOG_INFO, "Mode -> %s", mode_name_sourced(desired_mode, mode_from_serial));
+            last_mode             = desired_mode;
+            last_mode_from_serial = mode_from_serial;
         }
 
         // Decide desired RF state from mode.
@@ -363,7 +384,7 @@ int main(void) {
                 LOG_TRACE,
                 "ADC: now_ms=%lu raw=%u mV=%lu state=%s mode=%s",
                 (unsigned long)now, raw, (unsigned long)mV,
-                rf_state_name(rf_state), mode_name(desired_mode)
+                rf_state_name(rf_state), mode_name_sourced(desired_mode, mode_from_serial)
             );
             last_adc_value_trace_time = now;
         }
@@ -374,14 +395,14 @@ int main(void) {
                 LOG(
                     LOG_INFO,
                     "Heartbeat: state=%s mode=%s last_tx_ago_s=never",
-                    rf_state_name(rf_state), mode_name(desired_mode)
+                    rf_state_name(rf_state), mode_name_sourced(desired_mode, mode_from_serial)
                 );
             } else {
                 const uint32_t age_ms = now - last_tx_detect_ms;
                 LOG(
                     LOG_INFO,
                     "Heartbeat: state=%s mode=%s last_tx_ago_s=%lu.%03lu",
-                    rf_state_name(rf_state), mode_name(desired_mode),
+                    rf_state_name(rf_state), mode_name_sourced(desired_mode, mode_from_serial),
                     (unsigned long)(age_ms / 1000u),
                     (unsigned long)(age_ms % 1000u)
                 );
