@@ -3682,7 +3682,7 @@
 		(uuid "9ec4f35d-f083-4827-bced-dd14ccdef3ae")
 	)
 	(rectangle
-		(start 27.94 13.97)
+		(start 13.97 13.97)
 		(end 266.7 78.74)
 		(stroke
 			(width 0)
@@ -4457,7 +4457,7 @@
 	)
 	(wire
 		(pts
-			(xy 54.61 45.72) (xy 62.23 45.72)
+			(xy 41.91 45.72) (xy 62.23 45.72)
 		)
 		(stroke
 			(width 0)
@@ -5124,6 +5124,36 @@
 			(type default)
 		)
 		(uuid "fd6ab01a-b996-4d9a-b7a8-b56115584a22")
+	)
+	(label "RF_PORT_RX"
+		(at 156.21 60.96 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1d05532b-2eb4-435d-9606-b0b360589d14")
+	)
+	(label "RF_PORT_ANT"
+		(at 222.25 64.77 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "376f1fec-7966-412a-8d25-b6e220c1e0ae")
+	)
+	(label "RF_PORT_TX"
+		(at 43.18 45.72 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6f60dba9-e577-4c57-bad4-034b5aa871b8")
 	)
 	(global_label "TX_DETECTED"
 		(shape input)
@@ -11501,7 +11531,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_Coaxial")
-		(at 49.53 45.72 0)
+		(at 36.83 45.72 0)
 		(mirror y)
 		(unit 1)
 		(body_style 1)
@@ -11512,7 +11542,7 @@
 		(dnp no)
 		(uuid "f10ddc23-253f-4a67-ae11-7ad2207d8b39")
 		(property "Reference" "J2"
-			(at 46.99 44.7431 0)
+			(at 34.29 44.7431 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11523,7 +11553,7 @@
 			)
 		)
 		(property "Value" "Conn_SO-239"
-			(at 46.99 47.2831 0)
+			(at 34.29 47.2831 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11534,7 +11564,7 @@
 			)
 		)
 		(property "Footprint" "00-project-footprints:Amphenol N Jack 172234"
-			(at 49.53 45.72 0)
+			(at 36.83 45.72 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11545,7 +11575,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 49.53 45.72 0)
+			(at 36.83 45.72 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11556,7 +11586,7 @@
 			)
 		)
 		(property "Description" "coaxial connector (BNC, SMA, SMB, SMC, Cinch/RCA, LEMO, ...)"
-			(at 49.53 45.72 0)
+			(at 36.83 45.72 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11567,7 +11597,7 @@
 			)
 		)
 		(property "Purpose" "TX/Uplink Input"
-			(at 39.624 49.276 0)
+			(at 26.924 49.276 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11577,7 +11607,7 @@
 			)
 		)
 		(property "Connector Type" "SO-239 Female"
-			(at 39.116 51.562 0)
+			(at 26.416 51.562 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12102,7 +12132,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDS")
-		(at 49.53 50.8 0)
+		(at 36.83 50.8 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12112,7 +12142,7 @@
 		(dnp no)
 		(uuid "fefec40a-1220-4d30-ab66-9cffdc9e2867")
 		(property "Reference" "#PWR04"
-			(at 49.53 57.15 0)
+			(at 36.83 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12123,7 +12153,7 @@
 			)
 		)
 		(property "Value" "GNDS"
-			(at 49.53 54.864 0)
+			(at 36.83 54.864 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12133,7 +12163,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 49.53 50.8 0)
+			(at 36.83 50.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12144,7 +12174,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 49.53 50.8 0)
+			(at 36.83 50.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12155,7 +12185,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDS\" , signal ground"
-			(at 49.53 50.8 0)
+			(at 36.83 50.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

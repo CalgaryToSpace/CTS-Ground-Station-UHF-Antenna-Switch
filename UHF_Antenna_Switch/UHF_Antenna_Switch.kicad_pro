@@ -555,6 +555,15 @@
     },
     "net_colors": null,
     "netclass_assignments": {
+      "/RF_PORT_ANT": [
+        "50_Ohm_RF"
+      ],
+      "/RF_PORT_RX": [
+        "50_Ohm_RF"
+      ],
+      "/RF_PORT_TX": [
+        "50_Ohm_RF"
+      ],
       "/Relay_K1/RF_COMMON": [
         "50_Ohm_RF"
       ],
