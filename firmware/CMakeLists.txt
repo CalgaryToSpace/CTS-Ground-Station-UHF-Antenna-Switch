@@ -13,6 +13,7 @@ set(PICO_BOARD pico)
 
 pico_sdk_init()
 
+set(CMAKE_EXECUTABLE_SUFFIX ".elf")
 add_executable(cts_uhf_rxtx_switch
     main.c
 )
