@@ -2060,52 +2060,52 @@
 			)
 		)
 		(pin "7"
-			(uuid "0d368c73-1494-4e9a-9640-bb8ef2f490fe")
+			(uuid "81f51d93-8416-458b-ab97-e4071576343c")
 		)
 		(pin "10"
-			(uuid "e1cdf95e-fba7-473c-b5a6-54273e1a5d7c")
+			(uuid "1c701b81-671b-43da-9198-69f293d9d279")
 		)
 		(pin "11"
-			(uuid "d689bac3-9c04-4762-815e-272d47a63ce4")
+			(uuid "1959ca94-49e4-4b5d-910a-81555605065f")
 		)
 		(pin "20"
-			(uuid "c173f18f-b1db-47d4-b9c1-76cb2adbea37")
+			(uuid "653011bd-052b-453d-b38c-34926c875561")
 		)
 		(pin "21"
-			(uuid "c7fbef55-0f58-484f-9dec-1ff009ac065f")
+			(uuid "b807dbc8-67ce-416c-b0ee-0a7d55e239a7")
 		)
 		(pin "22"
-			(uuid "b3cb284b-2a7a-4b32-a95c-f7724d81af26")
+			(uuid "d867d448-3f7e-4852-b492-4fd1270557a5")
 		)
 		(pin "2"
-			(uuid "cc99cb81-98cc-47b7-9194-8885f84ffb63")
+			(uuid "65dcd3fa-3ad2-456b-a6c0-7eb1d7fc328a")
 		)
 		(pin "5"
-			(uuid "a393436c-c079-4d37-b1f9-c7710490c96e")
+			(uuid "ab69ec2b-1945-41fa-a423-5883015f6299")
 		)
 		(pin "6"
-			(uuid "52c24726-ce26-4e7a-957e-398a7b10eb9c")
+			(uuid "beb17e11-3dec-497c-9221-9d5b92b575f4")
 		)
 		(pin "15"
-			(uuid "bdc7067a-9f75-479b-9bd5-bb74e051fe21")
+			(uuid "8b196557-8069-4814-9820-a149c9420b53")
 		)
 		(pin "17"
-			(uuid "75a05b28-5d19-461e-8786-a28593d49d70")
+			(uuid "53a53e6e-b75e-46de-82e0-f900791d1bf0")
 		)
 		(pin "19"
-			(uuid "804d83c2-0be6-41a1-96d5-e0004623aa7d")
+			(uuid "a7c05a71-eeed-427b-bdc3-0233098434c2")
 		)
 		(pin "12"
-			(uuid "1fd6a64b-b368-4fee-8e3c-51fbc48d8baf")
+			(uuid "179c8d0f-2254-4c87-94d2-477800d41440")
 		)
 		(pin "13"
-			(uuid "8fa3486e-08c4-4c74-880d-7f76598a587e")
+			(uuid "de48c272-2c8a-4b9a-ba28-8a050b31796b")
 		)
 		(pin "14"
-			(uuid "8e34447e-9b00-477d-b7a1-fa8a0e85d59e")
+			(uuid "eea0bee8-4c0c-4423-9c32-cacce6f9e1d9")
 		)
 		(pin "1"
-			(uuid "21f2047f-94d7-42c4-889f-b7d4f8812403")
+			(uuid "c1c81769-5829-4c52-bf81-6a038f34be57")
 		)
 		(instances
 			(project "UHF_Antenna_Switch"
@@ -2115,6 +2115,10 @@
 				)
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/9d81a56d-3e74-45da-8801-f425c0b0835d"
 					(reference "K2")
+					(unit 1)
+				)
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/c97717c7-e443-424e-8990-34b2a22b4c7b"
+					(reference "K3")
 					(unit 1)
 				)
 			)
@@ -2187,7 +2191,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "10affadc-5eba-4664-be22-acfe346681a0")
+			(uuid "5201fdbe-ea5a-4af0-a7f1-63e51a5e4ef6")
 		)
 		(instances
 			(project "UHF_Antenna_Switch"
@@ -2197,6 +2201,10 @@
 				)
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/9d81a56d-3e74-45da-8801-f425c0b0835d"
 					(reference "#PWR025")
+					(unit 1)
+				)
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/c97717c7-e443-424e-8990-34b2a22b4c7b"
+					(reference "#PWR050")
 					(unit 1)
 				)
 			)
@@ -2290,10 +2298,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "cc6aa6ad-d002-4323-9eeb-e5c0ceebd4f0")
+			(uuid "c1e42538-b1b9-403d-a239-72d363dc5eba")
 		)
 		(pin "2"
-			(uuid "ab647514-c57f-44f6-8d19-9806f0b25eb3")
+			(uuid "21b0db87-ee85-48a3-93f0-c8db6bc676fc")
 		)
 		(instances
 			(project "UHF_Antenna_Switch"
@@ -2303,6 +2311,10 @@
 				)
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/9d81a56d-3e74-45da-8801-f425c0b0835d"
 					(reference "D3")
+					(unit 1)
+				)
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/c97717c7-e443-424e-8990-34b2a22b4c7b"
+					(reference "D10")
 					(unit 1)
 				)
 			)
@@ -2379,13 +2391,13 @@
 			)
 		)
 		(pin "1"
-			(uuid "3cb63a39-f8d6-48bd-988f-ff768d3f444e")
+			(uuid "60a5ccf7-2101-4988-bab8-d148fb8f8c88")
 		)
 		(pin "2"
-			(uuid "f221b2c9-2af2-4c0f-b50b-f64c09cc3b51")
+			(uuid "c5002738-352e-4e8c-88e2-06b31a4b9467")
 		)
 		(pin "3"
-			(uuid "835e9028-1a9c-4836-944a-39933c7ba0b6")
+			(uuid "5416777d-de42-41e9-88e3-b7bd64ba7cdf")
 		)
 		(instances
 			(project "UHF_Antenna_Switch"
@@ -2395,6 +2407,10 @@
 				)
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/9d81a56d-3e74-45da-8801-f425c0b0835d"
 					(reference "Q3")
+					(unit 1)
+				)
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/c97717c7-e443-424e-8990-34b2a22b4c7b"
+					(reference "Q4")
 					(unit 1)
 				)
 			)
@@ -2467,7 +2483,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "f4e8e932-1121-43f0-a9e3-aa0e709b5cb8")
+			(uuid "60d68de7-1606-4099-84bf-a02d354587ad")
 		)
 		(instances
 			(project "UHF_Antenna_Switch"
@@ -2477,6 +2493,10 @@
 				)
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/9d81a56d-3e74-45da-8801-f425c0b0835d"
 					(reference "#PWR024")
+					(unit 1)
+				)
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/c97717c7-e443-424e-8990-34b2a22b4c7b"
+					(reference "#PWR049")
 					(unit 1)
 				)
 			)
@@ -2550,7 +2570,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "42a49594-7110-4d9c-beea-ab78372ea3bf")
+			(uuid "7a9287d8-442b-439e-80d3-beb59bd47192")
 		)
 		(instances
 			(project "UHF_Antenna_Switch"
@@ -2560,6 +2580,10 @@
 				)
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/9d81a56d-3e74-45da-8801-f425c0b0835d"
 					(reference "#PWR019")
+					(unit 1)
+				)
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/c97717c7-e443-424e-8990-34b2a22b4c7b"
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -2632,10 +2656,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "e683ab6b-5037-4d43-82cf-1cc66410e37d")
+			(uuid "4c53cf2c-4af6-47d1-8a0b-06ab5251fe7f")
 		)
 		(pin "2"
-			(uuid "7c9a513f-bc90-46a7-822e-8a69a14a4588")
+			(uuid "96bcfe12-c233-497f-8d93-0761fcb65547")
 		)
 		(instances
 			(project "UHF_Antenna_Switch"
@@ -2645,6 +2669,10 @@
 				)
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/9d81a56d-3e74-45da-8801-f425c0b0835d"
 					(reference "R6")
+					(unit 1)
+				)
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/c97717c7-e443-424e-8990-34b2a22b4c7b"
+					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -2716,10 +2744,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "c2fe2a5e-1e4b-4cc0-af1a-033e41d000de")
+			(uuid "d2b6346e-5372-499b-84f3-7d2c9d289809")
 		)
 		(pin "2"
-			(uuid "a7b42e37-d3d2-4f35-b7a1-fe677daf2969")
+			(uuid "a86f749a-580a-4188-845e-9059146a1f0d")
 		)
 		(instances
 			(project "UHF_Antenna_Switch"
@@ -2729,6 +2757,10 @@
 				)
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/9d81a56d-3e74-45da-8801-f425c0b0835d"
 					(reference "R5")
+					(unit 1)
+				)
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/c97717c7-e443-424e-8990-34b2a22b4c7b"
+					(reference "R15")
 					(unit 1)
 				)
 			)
@@ -2801,7 +2833,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "e8637f91-5aea-47f8-889a-cc00532eb333")
+			(uuid "0fc36164-9228-4fc5-b5b5-d805e4ede9ad")
 		)
 		(instances
 			(project "UHF_Antenna_Switch"
@@ -2811,6 +2843,10 @@
 				)
 				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/9d81a56d-3e74-45da-8801-f425c0b0835d"
 					(reference "#PWR023")
+					(unit 1)
+				)
+				(path "/0ffb5503-f768-4a51-945c-501d4ddb5b7c/c97717c7-e443-424e-8990-34b2a22b4c7b"
+					(reference "#PWR048")
 					(unit 1)
 				)
 			)

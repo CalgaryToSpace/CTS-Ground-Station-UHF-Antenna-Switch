@@ -555,6 +555,15 @@
     },
     "net_colors": null,
     "netclass_assignments": {
+      "/RF_PORT_ANT": [
+        "50_Ohm_RF"
+      ],
+      "/RF_PORT_RX": [
+        "50_Ohm_RF"
+      ],
+      "/RF_PORT_TX": [
+        "50_Ohm_RF"
+      ],
       "/Relay_K1/RF_COMMON": [
         "50_Ohm_RF"
       ],
@@ -565,6 +574,9 @@
         "50_Ohm_RF"
       ],
       "/Relay_K2/RF_COMMON": [
+        "50_Ohm_RF"
+      ],
+      "/Relay_K3/RF_COMMON": [
         "50_Ohm_RF"
       ],
       "GNDS": [
@@ -728,7 +740,7 @@
         "uuid": "0ffb5503-f768-4a51-945c-501d4ddb5b7c"
       }
     ],
-    "used_designators": "",
+    "used_designators": "R15-17,Q4,K3,D10,#PWR7,#PWR48-52",
     "variants": []
   },
   "sheets": [
@@ -743,6 +755,10 @@
     [
       "9d81a56d-3e74-45da-8801-f425c0b0835d",
       "Relay_K2"
+    ],
+    [
+      "c97717c7-e443-424e-8990-34b2a22b4c7b",
+      "Relay_K3"
     ]
   ],
   "text_variables": {},
