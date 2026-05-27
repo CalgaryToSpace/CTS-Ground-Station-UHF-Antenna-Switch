@@ -57,7 +57,7 @@ static const uint32_t RELAY_SWITCH_DELAY_MS = 12;
 // 3.3 V reference, 12-bit ADC -> 1 LSB = 0.806 mV.
 // Threshold: 400 mV -> 496 raw counts.
 // Datasheet (LTC5507ES6): https://www.analog.com/media/en/technical-documentation/data-sheets/5507f.pdf
-static const uint32_t TX_DETECT_THRESHOLD_RAW = 496; // TODO: Review trace log messages to adjust this value as observed.
+static const uint32_t TX_DETECT_THRESHOLD_RAW = 496;
 
 // How often Auto-mode samples the detector.
 static const uint32_t AUTO_POLL_INTERVAL_US = 100;
