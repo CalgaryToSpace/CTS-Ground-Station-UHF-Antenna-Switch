@@ -23,6 +23,7 @@
 #include <stdbool.h>
 
 #include "pico/stdlib.h"
+#include "pico/bootrom.h"
 #include "hardware/adc.h"
 #include "hardware/gpio.h"
 #include "hardware/watchdog.h"
@@ -211,6 +212,16 @@ static bool tx_sensed(void) {
     return false;
 }
 
+static void print_help(void) {
+    LOG(LOG_ALWAYS, "================= HELP ========================");
+    LOG(LOG_ALWAYS, "Send '0'/'1'/'2'/'3' to set log level (default = 0)");
+    LOG(LOG_ALWAYS, "  0 = nearly none, 1 = info, 2 = debug, 3 = trace");
+    LOG(LOG_ALWAYS, "Send 't'/'r'/'a' to force TX/RX/Auto, 's' to go back to using the slide switch (default = slide switch)");
+    LOG(LOG_ALWAYS, "Send 'f' to reboot into flash bootloader mode");
+    LOG(LOG_ALWAYS, "Send 'x' to reboot");
+    LOG(LOG_ALWAYS, "Send 'h' to print this help message");
+    LOG(LOG_ALWAYS, "===============================================");
+}
 
 /// Parse single-character serial input commands and execute/handle them.
 static void poll_serial_input(void) {
@@ -233,6 +244,16 @@ static void poll_serial_input(void) {
     } else if (c == 's') {
         g_serial_mode_override = MODE_INVALID;
         LOG(LOG_ALWAYS, "Serial override cleared, using slide switch");
+    } else if (c == 'h') {
+        print_help();
+    } else if (c == 'f') {
+        LOG(LOG_ALWAYS, "Rebooting into flash bootloader mode...");
+        sleep_ms(1000);
+        reset_usb_boot(0, 0);
+    } else if (c == 'x') {
+        LOG(LOG_ALWAYS, "Rebooting...");
+        sleep_ms(1000);
+        watchdog_reboot(0, 0, 0);  // Triggers an immediate watchdog reset -> firmware restart.
     }
 }
 
@@ -289,14 +310,12 @@ int main(void) {
     setup_adc();
 
     // Give USB-CDC a moment to enumerate so the user sees the banner.
-    sleep_ms(1500);
+    sleep_ms(500);
 
     LOG(LOG_ALWAYS, "===============================================");
     LOG(LOG_ALWAYS, "CTS UHF RX/TX Switch booting...");
-    LOG(LOG_ALWAYS, "Send '0'/'1'/'2'/'3' to set log level (default = 0)");
-    LOG(LOG_ALWAYS, "  0 = none, 1 = info, 2 = debug, 3 = trace");
-    LOG(LOG_ALWAYS, "Send 't'/'r'/'a' to force TX/RX/Auto, 's' to use slide switch");
     LOG(LOG_ALWAYS, "===============================================");
+    print_help();
 
     rf_state_t  rf_state              = RF_RX;
     mode_t      last_mode             = MODE_INVALID;
