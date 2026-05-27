@@ -24,6 +24,7 @@
 
 #include "pico/stdlib.h"
 #include "pico/bootrom.h"
+#include "pico/stdio_usb.h"
 #include "hardware/adc.h"
 #include "hardware/gpio.h"
 #include "hardware/watchdog.h"
@@ -92,7 +93,7 @@ static const char *log_level_name(log_level_t level) {
         case LOG_DEBUG: return "DEBUG ";
         case LOG_TRACE: return "TRACE ";
     }
-    return "UNKOWN";
+    return "UNKNOWN";
 }
 
 #define LOG(level, fmt, ...) \
@@ -309,14 +310,6 @@ int main(void) {
     setup_gpio();
     setup_adc();
 
-    // Give USB-CDC a moment to enumerate so the user sees the banner.
-    sleep_ms(500);
-
-    LOG(LOG_ALWAYS, "===============================================");
-    LOG(LOG_ALWAYS, "CTS UHF RX/TX Switch booting...");
-    LOG(LOG_ALWAYS, "===============================================");
-    print_help();
-
     rf_state_t  rf_state              = RF_RX;
     mode_t      last_mode             = MODE_INVALID;
     bool        last_mode_from_serial = false;
@@ -326,14 +319,14 @@ int main(void) {
     // Reported by the heartbeat as seconds-since so a ground-station
     // host can confirm the switch actually saw its uplink burst.
     uint32_t    last_tx_detect_ms = 0;
+    bool last_cdc_connected = false;
+    uint32_t last_cdc_connected_check_time = 0;
 
     // Force initial state on the relays.
     relays_set(RF_RX);
 
     // [WATCHDOG] Detect if we woke from a watchdog reset and log it.
-    if (watchdog_caused_reboot()) {
-        LOG(LOG_ALWAYS, "*** WATCHDOG RESET DETECTED ***");
-    }
+    const bool did_watchdog_cause_reboot = watchdog_caused_reboot();
 
     // [WATCHDOG] Enable. Timeout is 5000 ms.
     // pause_on_debug=true freezes the counter while a debugger is halted.
@@ -350,6 +343,24 @@ int main(void) {
         const mode_t desired_mode     = mode_from_serial
                                         ? g_serial_mode_override
                                         : read_mode_switch();
+
+        // Check for USB CDC connection status periodically.
+        // If it's a new connection, log a message and print help.
+        if (now - last_cdc_connected_check_time > 750) {
+            const bool cdc_connected = stdio_usb_connected();
+            if (cdc_connected && !last_cdc_connected) {
+                sleep_ms(100); // Brief settling time for the CDC link to stabilize.
+                LOG(LOG_ALWAYS, "===============================================");
+                LOG(LOG_ALWAYS, "CTS UHF RX/TX Switch connected to USB...");
+                if (did_watchdog_cause_reboot) {
+                    LOG(LOG_ALWAYS, "*** LAST REBOOT: WATCHDOG RESET DETECTED ***");
+                }
+                LOG(LOG_ALWAYS, "===============================================");
+                print_help();
+            }
+            last_cdc_connected = cdc_connected;
+            last_cdc_connected_check_time = now;
+        }
 
         if (desired_mode != last_mode || mode_from_serial != last_mode_from_serial) {
             LOG(LOG_INFO, "Mode -> %s", mode_name_sourced(desired_mode, mode_from_serial));
@@ -413,15 +424,19 @@ int main(void) {
             if (last_tx_detect_ms == 0) {
                 LOG(
                     LOG_INFO,
-                    "Heartbeat: state=%s mode=%s last_tx_ago_s=never",
-                    rf_state_name(rf_state), mode_name_sourced(desired_mode, mode_from_serial)
+                    "Heartbeat: log_level=%d state=%s mode=%s last_tx_ago_s=never",
+                    g_log_level,
+                    rf_state_name(rf_state),
+                    mode_name_sourced(desired_mode, mode_from_serial)
                 );
             } else {
                 const uint32_t age_ms = now - last_tx_detect_ms;
                 LOG(
                     LOG_INFO,
-                    "Heartbeat: state=%s mode=%s last_tx_ago_s=%lu.%03lu",
-                    rf_state_name(rf_state), mode_name_sourced(desired_mode, mode_from_serial),
+                    "Heartbeat: log_level=%d state=%s mode=%s last_tx_ago_s=%lu.%03lu",
+                    g_log_level,
+                    rf_state_name(rf_state),
+                    mode_name_sourced(desired_mode, mode_from_serial),
                     (unsigned long)(age_ms / 1000u),
                     (unsigned long)(age_ms % 1000u)
                 );
