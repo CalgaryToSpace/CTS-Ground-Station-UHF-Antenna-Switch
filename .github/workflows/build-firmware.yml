@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: CMake Build (RP2040)
+    name: Build Firmware
     runs-on: ubuntu-24.04
 
     steps:
