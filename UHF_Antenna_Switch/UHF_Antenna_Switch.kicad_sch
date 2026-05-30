@@ -3920,9 +3920,9 @@
 		)
 		(uuid "957d9629-7ba0-4830-8a9e-7a678f7f36fd")
 	)
-	(text "GP6 = Auto\nGP7 = Force TX\nGP8 = Force RX"
+	(text "GP5 = Force RX\nGP6 = Auto\nGP7 = Force TX\nGP8 = Force RX (Rev 1)"
 		(exclude_from_sim no)
-		(at 83.566 126.238 0)
+		(at 78.232 125.476 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4062,12 +4062,12 @@
 		(uuid "def064ab-b470-494c-b25c-5fc64795fa59")
 	)
 	(no_connect
-		(at 71.12 106.68)
-		(uuid "0bf286e5-40fc-47f6-9e3a-c2ee8c195941")
-	)
-	(no_connect
 		(at 50.8 123.19)
 		(uuid "175f426c-7d8e-488b-93c4-0c43b223c0ab")
+	)
+	(no_connect
+		(at 71.12 114.3)
+		(uuid "2445de1a-8740-41cc-bf5f-2f3a215c3229")
 	)
 	(no_connect
 		(at 55.88 123.19)
@@ -4210,16 +4210,6 @@
 			(type default)
 		)
 		(uuid "2aa61e3e-3fc0-4560-8f94-c0bde560d882")
-	)
-	(wire
-		(pts
-			(xy 71.12 114.3) (xy 73.66 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3100a7f1-2aaa-4bf0-9ae8-21cadd16b766")
 	)
 	(wire
 		(pts
@@ -4523,6 +4513,16 @@
 	)
 	(wire
 		(pts
+			(xy 71.12 111.76) (xy 73.66 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6ff36b81-ee0e-4768-ab7c-8acc8865b65e")
+	)
+	(wire
+		(pts
 			(xy 148.59 99.06) (xy 151.13 99.06)
 		)
 		(stroke
@@ -4563,6 +4563,26 @@
 	)
 	(wire
 		(pts
+			(xy 71.12 106.68) (xy 73.66 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80581098-d2cc-4512-9132-3eb7795a312b")
+	)
+	(wire
+		(pts
+			(xy 71.12 109.22) (xy 73.66 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "83711b43-63a2-4aa2-879a-396a680bab6d")
+	)
+	(wire
+		(pts
 			(xy 205.74 133.35) (xy 205.74 139.7)
 		)
 		(stroke
@@ -4580,16 +4600,6 @@
 			(type default)
 		)
 		(uuid "84111389-c767-4d02-9325-3e9c42db6d6c")
-	)
-	(wire
-		(pts
-			(xy 71.12 111.76) (xy 73.66 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "872bef62-6fe7-40a0-9ee4-cc8581f80457")
 	)
 	(wire
 		(pts
@@ -4783,7 +4793,7 @@
 	)
 	(wire
 		(pts
-			(xy 83.82 111.76) (xy 87.63 111.76)
+			(xy 83.82 109.22) (xy 87.63 109.22)
 		)
 		(stroke
 			(width 0)
@@ -5210,16 +5220,6 @@
 			(type default)
 		)
 		(uuid "f6056274-9de5-473e-b256-4d086badef3c")
-	)
-	(wire
-		(pts
-			(xy 71.12 109.22) (xy 73.66 109.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f95a03dd-e09e-488a-8509-6b1bf678b986")
 	)
 	(wire
 		(pts
@@ -10624,7 +10624,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_SP3T")
-		(at 78.74 111.76 180)
+		(at 78.74 109.22 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10634,16 +10634,6 @@
 		(dnp no)
 		(uuid "b745f11f-b1fe-4b25-9dcf-6336410d2ebb")
 		(property "Reference" "SW1"
-			(at 78.74 119.888 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SW_SP3T"
 			(at 78.74 117.348 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10653,8 +10643,18 @@
 				)
 			)
 		)
+		(property "Value" "SW_SP3T"
+			(at 78.74 114.808 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(property "Footprint" "Button_Switch_SMD:SW_SP3T_PCM13"
-			(at 94.615 116.205 0)
+			(at 94.615 113.665 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10665,7 +10665,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 78.74 104.14 0)
+			(at 78.74 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10676,7 +10676,7 @@
 			)
 		)
 		(property "Description" "Switch, three position, single pole triple throw, 3 position switch, SP3T"
-			(at 78.74 111.76 0)
+			(at 78.74 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11205,7 +11205,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 87.63 111.76 0)
+		(at 87.63 109.22 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11215,7 +11215,7 @@
 		(dnp no)
 		(uuid "d294cb12-7c86-422d-8d65-9e1c46ac862f")
 		(property "Reference" "#PWR027"
-			(at 87.63 115.57 0)
+			(at 87.63 113.03 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11226,7 +11226,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 87.63 107.696 0)
+			(at 87.63 105.156 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11236,7 +11236,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 87.63 111.76 0)
+			(at 87.63 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11247,7 +11247,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 87.63 111.76 0)
+			(at 87.63 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11258,7 +11258,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 87.63 111.76 0)
+			(at 87.63 109.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
