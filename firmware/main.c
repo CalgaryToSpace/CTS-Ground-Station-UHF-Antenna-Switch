@@ -35,10 +35,12 @@
 // Values are the x in the schematic's GPx pin labels.
 // ---------------------------------------------------------------------------
 #define PIN_STATUS_LED          0
+#define PIN_SERIAL_OVERRIDE_LED 1
 
+#define PIN_MODE_FORCE_RX_REV_2 5
 #define PIN_MODE_AUTO           6
 #define PIN_MODE_FORCE_TX       7
-#define PIN_MODE_FORCE_RX       8
+#define PIN_MODE_FORCE_RX_REV_1 8
 
 #define PIN_TX_DETECT_ADC       26   // ADC0
 #define ADC_TX_DETECT_CHANNEL   0
@@ -178,11 +180,12 @@ static mode_t read_mode_switch(void) {
     // 1-hot, active-high (pull-downs hold unselected pins low).
     const bool a = gpio_get(PIN_MODE_AUTO);
     const bool t = gpio_get(PIN_MODE_FORCE_TX);
-    const bool r = gpio_get(PIN_MODE_FORCE_RX);
+    const bool rx_rev1 = gpio_get(PIN_MODE_FORCE_RX_REV_1);
+    const bool rx_rev2 = gpio_get(PIN_MODE_FORCE_RX_REV_2);
 
-    if (a && !t && !r) return MODE_AUTO;
-    if (!a && t && !r) return MODE_FORCE_TX;
-    if (!a && !t && r) return MODE_FORCE_RX;
+    if (a && !t && !rx_rev1 && !rx_rev2) return MODE_AUTO;
+    if (!a && t && !rx_rev1 && !rx_rev2) return MODE_FORCE_TX;
+    if (!a && !t && (rx_rev1 || rx_rev2)) return MODE_FORCE_RX;
     return MODE_INVALID;
 }
 
@@ -266,8 +269,12 @@ static void setup_gpio(void) {
     gpio_set_dir(PIN_STATUS_LED, GPIO_OUT);
     gpio_put(PIN_STATUS_LED, 0);
 
+    gpio_init(PIN_SERIAL_OVERRIDE_LED);
+    gpio_set_dir(PIN_SERIAL_OVERRIDE_LED, GPIO_OUT);
+    gpio_put(PIN_SERIAL_OVERRIDE_LED, 0);
+
     // Mode switch inputs with internal pull-downs.
-    const uint mode_pins[] = { PIN_MODE_AUTO, PIN_MODE_FORCE_TX, PIN_MODE_FORCE_RX };
+    const uint mode_pins[] = { PIN_MODE_AUTO, PIN_MODE_FORCE_TX, PIN_MODE_FORCE_RX_REV_1, PIN_MODE_FORCE_RX_REV_2 };
     for (size_t i = 0; i < sizeof(mode_pins) / sizeof(mode_pins[0]); i++) {
         gpio_init(mode_pins[i]);
         gpio_set_dir(mode_pins[i], GPIO_IN);
@@ -312,7 +319,7 @@ int main(void) {
 
     rf_state_t  rf_state              = RF_RX;
     mode_t      last_mode             = MODE_INVALID;
-    bool        last_mode_from_serial = false;
+    bool        last_serial_override_active = false;
     uint32_t    last_adc_value_trace_time  = 0;
     uint32_t    last_info_heartbeat_time = 0;
     // Uptime (ms) when Auto mode last sensed TX. 0 = never sensed.
@@ -339,8 +346,8 @@ int main(void) {
         watchdog_update();  // [WATCHDOG] Feed dog. Must run < every 5000 ms.
 
         const uint32_t now = to_ms_since_boot(get_absolute_time());
-        const bool   mode_from_serial = (g_serial_mode_override != MODE_INVALID);
-        const mode_t desired_mode     = mode_from_serial
+        const bool   serial_override_active = (g_serial_mode_override != MODE_INVALID);
+        const mode_t desired_mode     = serial_override_active
                                         ? g_serial_mode_override
                                         : read_mode_switch();
 
@@ -362,10 +369,11 @@ int main(void) {
             last_cdc_connected_check_time = now;
         }
 
-        if (desired_mode != last_mode || mode_from_serial != last_mode_from_serial) {
-            LOG(LOG_INFO, "Mode -> %s", mode_name_sourced(desired_mode, mode_from_serial));
+        if ((desired_mode != last_mode) || (serial_override_active != last_serial_override_active)) {
+            gpio_put(PIN_SERIAL_OVERRIDE_LED, serial_override_active);
+            LOG(LOG_INFO, "Mode -> %s", mode_name_sourced(desired_mode, serial_override_active));
             last_mode             = desired_mode;
-            last_mode_from_serial = mode_from_serial;
+            last_serial_override_active = serial_override_active;
         }
 
         // Decide desired RF state from mode.
@@ -414,7 +422,7 @@ int main(void) {
                 LOG_TRACE,
                 "ADC: now_ms=%lu raw=%u mV=%lu state=%s mode=%s",
                 (unsigned long)now, raw, (unsigned long)mV,
-                rf_state_name(rf_state), mode_name_sourced(desired_mode, mode_from_serial)
+                rf_state_name(rf_state), mode_name_sourced(desired_mode, serial_override_active)
             );
             last_adc_value_trace_time = now;
         }
@@ -427,7 +435,7 @@ int main(void) {
                     "Heartbeat: log_level=%d state=%s mode=%s last_tx_ago_s=never",
                     g_log_level,
                     rf_state_name(rf_state),
-                    mode_name_sourced(desired_mode, mode_from_serial)
+                    mode_name_sourced(desired_mode, serial_override_active)
                 );
             } else {
                 const uint32_t age_ms = now - last_tx_detect_ms;
@@ -436,7 +444,7 @@ int main(void) {
                     "Heartbeat: log_level=%d state=%s mode=%s last_tx_ago_s=%lu.%03lu",
                     g_log_level,
                     rf_state_name(rf_state),
-                    mode_name_sourced(desired_mode, mode_from_serial),
+                    mode_name_sourced(desired_mode, serial_override_active),
                     (unsigned long)(age_ms / 1000u),
                     (unsigned long)(age_ms % 1000u)
                 );
