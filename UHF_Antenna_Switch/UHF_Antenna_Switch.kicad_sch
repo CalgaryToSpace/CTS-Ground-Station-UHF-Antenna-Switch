@@ -4,6 +4,10 @@
 	(generator_version "10.0")
 	(uuid "0ffb5503-f768-4a51-945c-501d4ddb5b7c")
 	(paper "USLetter")
+	(title_block
+		(date "2026-05-30")
+		(rev "Rev 2")
+	)
 	(lib_symbols
 		(symbol "00-project-symbols:PCB-Trace-RF-Coupler"
 			(exclude_from_sim no)
@@ -3889,9 +3893,9 @@
 		)
 		(uuid "6c850f0b-e521-450c-ada5-ecf944044051")
 	)
-	(text "PTT Interface is added as a backup\noption in case of non-working detector."
+	(text "PTT Interface is added as a backup\noption in case of non-working detector.\nSerial control via USB is preferred."
 		(exclude_from_sim no)
-		(at 230.632 157.48 0)
+		(at 233.426 155.956 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3987,6 +3991,26 @@
 		)
 		(uuid "ffae2f35-8e4e-4bd3-8868-68e4c1974e95")
 	)
+	(text_box "Uplink power must be approx. >=10W to be auto-detected."
+		(exclude_from_sim no)
+		(at 21.59 58.42 0)
+		(size 39.37 5.9929)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "6ba05581-c646-4a5f-bf15-04c22aa3280c")
+	)
 	(text_box "Input to detector: -34 to 14 dBm\n\nDetector Caps (µF) ≥ 1/(30 x Freq_Min_MHz) = 1/(30 * 400) = 83 pF\nDetector Caps (µF) ≥ 1/(30 x Freq_Min_MHz) = 1/(30 * 333) = 100 pF\nUse C1=C2=100 pF (for ease of sourcing).\n"
 		(exclude_from_sim no)
 		(at 171.45 109.22 0)
@@ -4011,7 +4035,7 @@
 		(at 205.74 139.7)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "01b9adf6-4338-4889-b4c8-bb39927c6829")
+		(uuid "05a87be8-930c-41f2-b01b-c3946606f507")
 	)
 	(junction
 		(at 58.42 160.02)
@@ -4583,7 +4607,7 @@
 	)
 	(wire
 		(pts
-			(xy 205.74 133.35) (xy 205.74 139.7)
+			(xy 205.74 134.62) (xy 205.74 139.7)
 		)
 		(stroke
 			(width 0)
@@ -4723,7 +4747,7 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 132.08) (xy 220.98 133.35)
+			(xy 220.98 132.08) (xy 220.98 134.62)
 		)
 		(stroke
 			(width 0)
@@ -5053,7 +5077,7 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 133.35) (xy 215.9 133.35)
+			(xy 220.98 134.62) (xy 215.9 134.62)
 		)
 		(stroke
 			(width 0)
@@ -7026,7 +7050,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "35a923ca-b100-4535-b919-9204eb336b1d")
 		(property "Reference" "J5"
 			(at 237.236 134.112 0)
@@ -8772,18 +8796,18 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_Push")
-		(at 210.82 133.35 0)
+		(at 210.82 134.62 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "6a81b0e6-63aa-4e07-b333-9cd92037e8b8")
 		(property "Reference" "SW2"
-			(at 210.82 125.73 0)
+			(at 210.82 127 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8793,7 +8817,7 @@
 			)
 		)
 		(property "Value" "SW_Push"
-			(at 210.82 128.27 0)
+			(at 210.82 129.54 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8803,7 +8827,7 @@
 			)
 		)
 		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H4.3mm"
-			(at 210.82 128.27 0)
+			(at 210.82 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8814,7 +8838,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 210.82 128.27 0)
+			(at 210.82 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8825,7 +8849,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, two pins"
-			(at 210.82 133.35 0)
+			(at 210.82 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
