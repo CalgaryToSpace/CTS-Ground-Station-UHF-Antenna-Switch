@@ -18,6 +18,19 @@ add_executable(cts_uhf_rxtx_switch
     main.c
 )
 
+# Generate build_info.h at make-time (note: not at cmake configure time).
+add_custom_target(generate_build_info ALL
+    COMMAND ${CMAKE_COMMAND}
+        -DOUTPUT_FILE=${CMAKE_CURRENT_BINARY_DIR}/build_info.h
+        -DSOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
+        -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/generate_build_info.cmake
+    BYPRODUCTS ${CMAKE_CURRENT_BINARY_DIR}/build_info.h
+    COMMENT "Generating build_info.h"
+    VERBATIM
+)
+target_include_directories(cts_uhf_rxtx_switch PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+add_dependencies(cts_uhf_rxtx_switch generate_build_info)
+
 # Always force -O3 optimization level.
 target_compile_options(cts_uhf_rxtx_switch PRIVATE -O3)
 
