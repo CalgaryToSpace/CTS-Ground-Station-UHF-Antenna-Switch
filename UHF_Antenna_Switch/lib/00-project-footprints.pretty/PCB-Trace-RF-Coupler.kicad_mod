@@ -6,9 +6,8 @@
 	(descr "Trace Width=2.88mm, Length=12mm, Gap=2.5mm, Coupling=-40 dB")
 	(property "Reference" "REF**"
 		(at 0 1.5 0)
-		(unlocked yes)
 		(layer "F.SilkS")
-		(uuid "ccdbf33a-9bba-48f8-a2b7-9237978260a6")
+		(uuid "3215345e-b427-44b1-b900-195bb5ce5767")
 		(effects
 			(font
 				(size 1 1)
@@ -20,7 +19,7 @@
 		(at 0 -5.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
-		(uuid "7d8eb16b-818f-40a9-be28-e65aebb5a51b")
+		(uuid "cd90e179-d820-4986-83b1-e5d5ec1df637")
 		(effects
 			(font
 				(size 1 1)
@@ -33,7 +32,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "136aaee9-fc94-48de-bd06-601c68652985")
+		(uuid "4b430206-3c52-475b-8da0-419d2eb243b3")
 		(effects
 			(font
 				(size 1 1)
@@ -46,7 +45,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "35fdaf02-2f49-40cc-aab5-ca76fd82d7d6")
+		(uuid "bf6e2dea-fbce-4ba8-b2a6-d7fee12d8d94")
 		(effects
 			(font
 				(size 1 1)
@@ -54,7 +53,8 @@
 			)
 		)
 	)
-	(attr through_hole)
+	(attr smd exclude_from_pos_files exclude_from_bom)
+	(net_tie_pad_groups "1,2" "3,4")
 	(duplicate_pad_numbers_are_jumpers no)
 	(fp_rect
 		(start -8 -3.5)
@@ -65,7 +65,7 @@
 		)
 		(fill no)
 		(layer "F.SilkS")
-		(uuid "fcfea7e4-a353-40f7-bc13-f973798ab4bd")
+		(uuid "9e7d17c4-80eb-4a45-975c-8c9f5bc764f1")
 	)
 	(fp_rect
 		(start -8 -3.5)
@@ -76,13 +76,13 @@
 		)
 		(fill no)
 		(layer "F.CrtYd")
-		(uuid "5003628d-b44f-4667-9b93-87958e391b92")
+		(uuid "6eff6957-c2f8-4e50-9543-781c2ac133ed")
 	)
 	(fp_text user "${REFERENCE}"
 		(at 0 -4 0)
 		(unlocked yes)
 		(layer "F.Fab")
-		(uuid "6451b846-7d3f-4469-849c-71b5b99ad6ba")
+		(uuid "8e9fbe77-42c9-4899-86f1-f83843ef5894")
 		(effects
 			(font
 				(size 1 1)
@@ -94,29 +94,29 @@
 		(at -3 -1.439996)
 		(size 6 2.879992)
 		(layers "F.Cu")
-		(uuid "5ce20fdf-eb4b-4ae9-85b6-f17c22b4a3db")
+		(uuid "237efc06-c73e-4449-8b4f-53463ddf5627")
 	)
 	(pad "2" smd rect
 		(at 3 -1.439999)
 		(size 6 2.879998)
 		(layers "F.Cu")
-		(uuid "c558ddc8-8226-4700-9ea3-0e724ac3d4ef")
+		(uuid "c2b02b3f-5310-4c20-9440-320c5e9c7758")
 	)
 	(pad "3" smd rect
 		(at -3 3.94)
 		(size 6 2.88)
 		(layers "F.Cu")
-		(uuid "81933f4a-94a9-48c6-93c7-e814a3de4125")
+		(uuid "b5e3811f-cb28-4b84-978c-f90430ae26fd")
 	)
 	(pad "4" smd rect
 		(at 3 3.94)
 		(size 6 2.88)
 		(layers "F.Cu")
-		(uuid "fbfe6b68-d576-4350-b51d-a7dedaec7fe9")
+		(uuid "5d9b9f26-d568-4806-9e38-20d3c2c730ee")
 	)
 	(zone
 		(layer "F.Cu")
-		(uuid "99122b63-aaea-4542-88d4-90f080832448")
+		(uuid "b4afeead-8e76-437f-b282-60f415b10931")
 		(name "Keepout_Between_Traces")
 		(hatch edge 0.5)
 		(connect_pads
