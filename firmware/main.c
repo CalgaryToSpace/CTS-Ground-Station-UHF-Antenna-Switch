@@ -105,7 +105,7 @@ static const char *log_level_name(log_level_t level) {
 #define LOG(level, fmt, ...) \
     do { \
         if (g_log_level >= (level)) { \
-            printf("[%lu] [%s] " fmt "\n", (unsigned long)to_ms_since_boot(get_absolute_time()), log_level_name(level), ##__VA_ARGS__); \
+            printf("[%llu] [%s] " fmt "\n", (unsigned long long)(time_us_64() / 1000u), log_level_name(level), ##__VA_ARGS__); \
         } \
     } while (0)
 
@@ -326,14 +326,14 @@ int main(void) {
     rf_state_t  rf_state              = RF_RX;
     mode_t      last_mode             = MODE_INVALID;
     bool        last_serial_override_active = false;
-    uint32_t    last_adc_value_trace_time  = 0;
-    uint32_t    last_info_heartbeat_time = 0;
+    uint64_t    last_adc_value_trace_time = 0;
+    uint64_t    last_info_heartbeat_time  = 0;
     // Uptime (ms) when Auto mode last sensed TX. 0 = never sensed.
     // Reported by the heartbeat as seconds-since so a ground-station
     // host can confirm the switch actually saw its uplink burst.
-    uint32_t    last_tx_detect_ms = 0;
+    uint64_t    last_tx_detect_ms = 0;
     bool last_cdc_connected = false;
-    uint32_t last_cdc_connected_check_time = 0;
+    uint64_t last_cdc_connected_check_time = 0;
 
     // Force initial state on the relays.
     relays_set(RF_RX);
@@ -351,7 +351,7 @@ int main(void) {
 
         watchdog_update();  // [WATCHDOG] Feed dog. Must run < every 5000 ms.
 
-        const uint32_t now = to_ms_since_boot(get_absolute_time());
+        const uint64_t now = time_us_64() / 1000u;
         const bool   serial_override_active = (g_serial_mode_override != MODE_INVALID);
         const mode_t desired_mode     = serial_override_active
                                         ? g_serial_mode_override
@@ -427,8 +427,8 @@ int main(void) {
             uint32_t mV  = (raw * 3300u) / 4095u;
             LOG(
                 LOG_TRACE,
-                "ADC: now_ms=%lu raw=%u mV=%lu state=%s mode=%s",
-                (unsigned long)now, raw, (unsigned long)mV,
+                "ADC: now_ms=%llu raw=%u mV=%lu state=%s mode=%s",
+                (unsigned long long)now, raw, (unsigned long)mV,
                 rf_state_name(rf_state), mode_name_sourced(desired_mode, serial_override_active)
             );
             last_adc_value_trace_time = now;
@@ -444,16 +444,17 @@ int main(void) {
                     rf_state_name(rf_state),
                     mode_name_sourced(desired_mode, serial_override_active)
                 );
-            } else {
-                const uint32_t age_ms = now - last_tx_detect_ms;
+            }
+            else {
+                const uint64_t age_ms = now - last_tx_detect_ms;
                 LOG(
                     LOG_INFO,
-                    "Heartbeat: log_level=%d state=%s mode=%s last_tx_ago_s=%lu.%03lu",
+                    "Heartbeat: log_level=%d state=%s mode=%s last_tx_ago_s=%llu.%03llu",
                     g_log_level,
                     rf_state_name(rf_state),
                     mode_name_sourced(desired_mode, serial_override_active),
-                    (unsigned long)(age_ms / 1000u),
-                    (unsigned long)(age_ms % 1000u)
+                    (unsigned long long)(age_ms / 1000u),
+                    (unsigned long long)(age_ms % 1000u)
                 );
             }
 
